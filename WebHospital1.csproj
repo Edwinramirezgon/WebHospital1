@@ -124,6 +124,9 @@
     <Content Include="Imagenes\Activar.png" />
     <Content Include="Imagenes\Buscar.jpg" />
     <Content Include="Imagenes\Edit.png" />
+    <Content Include="Imagenes\hospital1.jpg" />
+    <Content Include="Imagenes\hospital2.jpg" />
+    <Content Include="Imagenes\hospital3.jpg" />
     <Content Include="Paginas\CrudAltas.html" />
     <Content Include="Paginas\CrudCitas.html" />
     <Content Include="Paginas\CrudDetallesFormulas.html" />
@@ -174,7 +177,11 @@
     <Content Include="Paginas\Estilos\webfonts\fa-brands-400.svg" />
     <Content Include="Paginas\Estilos\webfonts\fa-regular-400.svg" />
     <Content Include="Paginas\Estilos\webfonts\fa-solid-900.svg" />
+    <Content Include="Paginas\HOME.html" />
     <Content Include="Paginas\Menu.html" />
+    <Content Include="Paginas\Pagos.html" />
+    <Content Include="Paginas\RegistroMedicos.html" />
+    <Content Include="Paginas\RegistroPacientes.html" />
     <Content Include="Paginas\Scripts\Comunes\CRUD.js" />
     <Content Include="Paginas\Scripts\CrudAlta.js" />
     <Content Include="Paginas\Scripts\CrudCitas.js" />
@@ -191,6 +198,7 @@
     <Content Include="Paginas\Scripts\CrudPersona.js" />
     <Content Include="Paginas\Scripts\CrudUrgencia.js" />
     <Content Include="Paginas\Scripts\CrudUsuario.js" />
+    <Content Include="Paginas\Urgencias.html" />
     <Content Include="Scripts\adminlte.js" />
     <Content Include="Scripts\adminlte.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
