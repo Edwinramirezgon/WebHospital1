@@ -14,11 +14,14 @@ async function Consultar() {
         $("#txtid_evento").val(hospitalizacion.id_evento);
         $("#txthabitacion").val(hospitalizacion.habitacion);
         $("#txtestado_hospitalizacion").val(hospitalizacion.estado_hospitalizacion);
-
+        $("#dvMensaje").html("");
     }
     else {
 
         $("#dvMensaje").html("La Hospitalizacion no existe en la base de datos");
+        $("#txtid_evento").val("");
+        $("#txthabitacion").val("");
+        $("#txtestado_hospitalizacion").val("");
     }
 }
 

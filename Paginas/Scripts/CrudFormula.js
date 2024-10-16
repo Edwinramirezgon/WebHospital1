@@ -16,7 +16,7 @@ async function Consultar() {
         $("#txtid_evento").val(formula.id_evento);    
         $("#txtfecha_formula").val(formula.fecha_formula.split('T')[0]);
         $("#txtinstrucciones").val(formula.instrucciones);
-
+        $("#dvMensaje").html("");
     }
     else {
 

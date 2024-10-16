@@ -15,7 +15,7 @@ async function Consultar() {
         $("#txtid_medicamento").val(detalle.id_medicamento);
         $("#txtcantidad").val(detalle.cantidad);
         $("#txtdosis").val(detalle.dosis);
-       
+        $("#dvMensaje").html("");
     }
     else {
 

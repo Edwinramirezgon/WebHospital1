@@ -15,12 +15,17 @@ async function Consultar() {
         $("#txtusuario1").val(usuario.usuario1);
         $("#txtpass").val(usuario.pass);
         $("#txtrol").val(usuario.rol);
+        $("#dvMensaje").html("");
       
 
     }
     else {
 
         $("#dvMensaje").html("El usuario no existe en la base de datos");
+        $("#txtid_persona").val("");
+        $("#txtusuario1").val("");
+        $("#txtpass").val("");
+        $("#txtrol").val("");
     }
 }
 

@@ -15,12 +15,17 @@ async function Consultar() {
         $("#txtmetodo_pago").val(pago.metodo_pago);
         $("#txtmonto_pagado").val(pago.monto_pagado);
         $("#txtfecha_pago").val(pago.fecha_pago.split('T')[0]);
+        $("#dvMensaje").html("");
 
 
     }
     else {
 
         $("#dvMensaje").html("El pago no existe en la base de datos");
+        $("#txtid_factura").val("");
+        $("#txtmetodo_pago").val("");
+        $("#txtmonto_pagado").val("");
+        $("#txtfecha_pago").val("");
     }
 }
 

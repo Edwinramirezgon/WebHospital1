@@ -16,6 +16,7 @@ async function Consultar() {
         $("#txtespecialidad").val(cita.especialidad);
         $("#txtmotivo").val(cita.motivo);
         $("#txtestado_cita").val(cita.estado_cita);
+        $("#dvMensaje").html("");
     }
     else {
 

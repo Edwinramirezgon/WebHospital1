@@ -15,12 +15,16 @@ async function Consultar() {
         $("#txtespecialidad").val(medico.especialidad);
         $("#txthorario").val(medico.horario);
         $("#txttelefono_contacto").val(medico.telefono_contacto);
-
+        $("#dvMensaje").html("");
 
     }
     else {
 
         $("#dvMensaje").html("El medico no existe en la base de datos");
+        $("#txtid_usuario").val("");
+        $("#txtespecialidad").val("");
+        $("#txthorario").val("");
+        $("#txttelefono_contacto").val("");
     }
 }
 

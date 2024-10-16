@@ -18,12 +18,21 @@ async function Consultar() {
         $("#txttelefono").val(persona.telefono);
         $("#txtemail").val(persona.email);
         $("#txtgenero").val(persona.genero);
+        $("#dvMensaje").html("");
 
 
     }
     else {
 
         $("#dvMensaje").html("La persona no existe en la base de datos");
+        $("#txtnombre").val("");
+        $("#txtapellido").val("");
+        $("#txtfecha_nacimiento").val("");
+        $("#txtdireccion").val("");
+        $("#txttelefono").val("");
+        $("#txtemail").val("");
+        $("#txtgenero").val("");
+       
     }
 }
 

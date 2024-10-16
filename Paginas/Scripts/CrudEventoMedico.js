@@ -15,7 +15,7 @@ async function Consultar() {
         $("#txtid_medico").val(evento.id_medico);
         $("#txtfecha_evento").val(evento.fecha_evento.split('T')[0]);
         $("#txtdescripcion").val(evento.descripcion);
-       
+        $("#dvMensaje").html("");
     }
     else {
 

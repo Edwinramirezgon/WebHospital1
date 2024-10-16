@@ -15,7 +15,7 @@ async function Consultar() {
         $("#txttipo_habitacion").val(habitacion.tipo_habitacion);
         $("#txtestado_habitacion").val(habitacion.estado_habitacion);
         $("#txtdescripcion").val(habitacion.descripcion);
-      
+        $("#dvMensaje").html("");
 
     }
     else {

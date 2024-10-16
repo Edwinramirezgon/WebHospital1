@@ -16,6 +16,7 @@ async function Consultar() {
         $("#txtfecha_alta").val(alta.fecha_alta.split('T')[0]);
         $("#txtdescripcion_alta").val(alta.descripcion_alta);
         $("#txtrecomendaciones").val(alta.recomendaciones);
+        $("#dvMensaje").html("");
     }
     else {
 

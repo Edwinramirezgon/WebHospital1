@@ -12,12 +12,14 @@ async function Consultar() {
     if (medicamento != null) {
         $("#txtnombre").val(medicamento.nombre);
         $("#txtdescripcion").val(medicamento.descripcion);
-       
+        $("#dvMensaje").html("");
 
     }
     else {
 
         $("#dvMensaje").html("El medicamento no existe en la base de datos");
+        $("#txtnombre").val("");
+        $("#txtdescripcion").val("");
     }
 }
 

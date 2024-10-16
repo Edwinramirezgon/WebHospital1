@@ -17,7 +17,7 @@ async function Consultar() {
         $("#txtmetodo_pago").val(factura.metodo_pago);
         $("#txtfecha_emision").val(factura.fecha_emision.split('T')[0]);
         $("#txtestado_pago").val(factura.estado_pago);
-
+        $("#dvMensaje").html("");
     }
     else {
 

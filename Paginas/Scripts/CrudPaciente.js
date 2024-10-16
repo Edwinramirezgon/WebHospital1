@@ -15,12 +15,16 @@ async function Consultar() {
         $("#txtcontacto_emergencia").val(paciente.contacto_emergencia);
         $("#txtalergias").val(paciente.alergias);
         $("#txtantecedentes_medicos").val(paciente.antecedentes_medicos);
-  
+        $("#dvMensaje").html("");
 
     }
     else {
 
         $("#dvMensaje").html("El paciente no existe en la base de datos");
+        $("#txtid_persona").val("");
+        $("#txtcontacto_emergencia").val("");
+        $("#txtalergias").val("");
+        $("#txtantecedentes_medicos").val("");
     }
 }
 

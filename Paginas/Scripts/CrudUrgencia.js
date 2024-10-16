@@ -14,12 +14,16 @@ async function Consultar() {
         $("#txtid_evento").val(urgencia.id_evento);
         $("#txtestado_urgencia").val(urgencia.estado_urgencia);
         $("#txtid_hospitalizacion").val(urgencia.id_hospitalizacion);
+        $("#dvMensaje").html("");
 
 
     }
     else {
 
         $("#dvMensaje").html("La urgencia no existe en la base de datos");
+        $("#txtid_evento").val("");
+        $("#txtestado_urgencia").val("");
+        $("#txtid_hospitalizacion").val("");
     }
 }
 
