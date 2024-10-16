@@ -1,7 +1,4 @@
-﻿jQuery(function () {
-    $("#dvMenu").load("../Paginas/Menu.html")
-});
-
+﻿
 async function Ejecutar(Metodo, Funcion) {
 
     const citas = new Citas($("#txtid_cita").val(), $("#txtid_evento").val(), $("#txthora_cita").val(), $("#txtespecialidad").val(),

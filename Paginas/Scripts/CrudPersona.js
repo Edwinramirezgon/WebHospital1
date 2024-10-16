@@ -1,7 +1,4 @@
-﻿jQuery(function () {
-    $("#dvMenu").load("../Paginas/Menu.html")
-});
-
+﻿
 async function Ejecutar(Metodo, Funcion) {
 
     const personas = new PERSONA($("#txtid_persona").val(), $("#txtnombre").val(), $("#txtapellido").val(), $("#txtfecha_nacimiento ").val(),

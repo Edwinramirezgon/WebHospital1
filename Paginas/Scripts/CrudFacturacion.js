@@ -1,7 +1,4 @@
-﻿jQuery(function () {
-    $("#dvMenu").load("../Paginas/Menu.html")
-});
-
+﻿
 async function Ejecutar(Metodo, Funcion) {
 
     const facturas = new Facturacion($("#txtid_factura").val(), $("#txtid_paciente").val(), $("#txtid_evento").val(), $("#txttotal ").val(),

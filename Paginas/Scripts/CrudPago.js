@@ -1,7 +1,4 @@
-﻿jQuery(function () {
-    $("#dvMenu").load("../Paginas/Menu.html")
-});
-
+﻿
 async function Ejecutar(Metodo, Funcion) {
 
     const pagos = new PAGO($("#txtid_pago").val(), $("#txtid_factura").val(), $("#txtmetodo_pago").val(), $("#txtmonto_pagado ").val(),

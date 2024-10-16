@@ -1,7 +1,4 @@
-﻿jQuery(function () {
-    $("#dvMenu").load("../Paginas/Menu.html")
-});
-
+﻿
 async function Ejecutar(Metodo, Funcion) {
 
     const hospitalizaciones = new Hospitalizacion($("#txtid_hospitalizacion").val(), $("#txtid_evento").val(), $("#txthabitacion").val(),

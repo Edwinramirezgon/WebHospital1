@@ -1,6 +1,4 @@
-﻿jQuery(function () {
-    $("#dvMenu").load("../Paginas/Menu.html")
-});
+﻿
 
 async function Ejecutar(Metodo, Funcion) {
 

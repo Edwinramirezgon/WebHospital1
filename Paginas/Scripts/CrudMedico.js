@@ -1,7 +1,4 @@
-﻿jQuery(function () {
-    $("#dvMenu").load("../Paginas/Menu.html")
-});
-
+﻿
 async function Ejecutar(Metodo, Funcion) {
 
     const Medico = new MEDICO($("#txtid_medico").val(), $("#txtid_usuario").val(), $("#txtespecialidad").val(), $("#txthorario ").val(),

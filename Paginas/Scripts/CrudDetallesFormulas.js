@@ -1,7 +1,4 @@
-﻿jQuery(function () {
-    $("#dvMenu").load("../Paginas/Menu.html")
-});
-
+﻿
 async function Ejecutar(Metodo, Funcion) {
 
     const detallesf = new DetallesFormulas($("#txtid_detalle_formula").val(), $("#txtid_formula").val(), $("#txtid_medicamento").val(), $("#txtcantidad").val(),

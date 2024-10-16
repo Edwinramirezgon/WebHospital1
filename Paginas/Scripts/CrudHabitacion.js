@@ -1,7 +1,4 @@
-﻿jQuery(function () {
-    $("#dvMenu").load("../Paginas/Menu.html")
-});
-
+﻿
 async function Ejecutar(Metodo, Funcion) {
 
     const habitaciones = new Habitacion($("#txtid_habitacion").val(), $("#txtnumero_habitacion").val(), $("#txttipo_habitacion").val(),
