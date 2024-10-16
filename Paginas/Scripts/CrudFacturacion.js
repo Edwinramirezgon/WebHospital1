@@ -22,6 +22,12 @@ async function Consultar() {
     else {
 
         $("#dvMensaje").html("La cita no existe en la base de datos");
+        $("#txtid_paciente").val("");
+        $("#txtid_evento").val("");
+        $("#txttotal").val("");
+        $("#txtmetodo_pago").val("");
+        $("#txtfecha_emision").val("");
+        $("#txtestado_pago").val("");
     }
 }
 

@@ -20,6 +20,11 @@ async function Consultar() {
     else {
 
         $("#dvMensaje").html("El alta no existe en la base de datos");
+        $("#txtid_hospitalizacion").val("");
+        $("#txtid_medico").val("");
+        $("#txtfecha_alta").val("");
+        $("#txtdescripcion_alta").val("");
+        $("#txtrecomendaciones").val("");
     }
 }
 

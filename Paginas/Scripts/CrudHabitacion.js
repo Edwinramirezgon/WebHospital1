@@ -21,6 +21,10 @@ async function Consultar() {
     else {
 
         $("#dvMensaje").html("La habitacion no existe en la base de datos");
+        $("#txtnumero_habitacion").val("");
+        $("#txttipo_habitacion").val("");
+        $("#txtestado_habitacion").val("");
+        $("#txtdescripcion").val("");
     }
 }
 

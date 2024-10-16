@@ -20,6 +20,10 @@ async function Consultar() {
     else {
 
         $("#dvMensaje").html("El evento medico no existe en la base de datos");
+        $("#txtid_paciente").val("");
+        $("#txtid_medico").val("");
+        $("#txtfecha_evento").val("");
+        $("#txtdescripcion").val("");
     }
 }
 

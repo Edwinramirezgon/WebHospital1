@@ -20,6 +20,11 @@ async function Consultar() {
     else {
 
         $("#dvMensaje").html("La cita no existe en la base de datos");
+        $("#txtid_evento").val("");
+        $("#txthora_cita").val("");
+        $("#txtespecialidad").val("");
+        $("#txtmotivo").val("");
+        $("#txtestado_cita").val("");
     }
 }
 

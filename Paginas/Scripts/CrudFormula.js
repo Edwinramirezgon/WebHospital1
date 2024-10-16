@@ -21,6 +21,11 @@ async function Consultar() {
     else {
 
         $("#dvMensaje").html("La formula no existe en la base de datos");
+        $("#txtid_paciente").val("");
+        $("#txtid_medico").val(("");
+        $("#txtid_evento").val((""o);
+        $("#txtfecha_formula").val(("");
+        $("#txtinstrucciones").val(("");
     }
 }
 

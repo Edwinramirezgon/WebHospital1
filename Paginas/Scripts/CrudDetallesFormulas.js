@@ -20,6 +20,10 @@ async function Consultar() {
     else {
 
         $("#dvMensaje").html("El Detalle de la formula no existe en la base de datos");
+        $("#txtid_formula").val("");
+        $("#txtid_medicamento").val("");
+        $("#txtcantidad").val("");
+        $("#txtdosis").val("");
     }
 }
 
