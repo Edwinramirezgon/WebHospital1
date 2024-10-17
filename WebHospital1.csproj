@@ -196,7 +196,7 @@
     <Content Include="Paginas\Scripts\CrudUrgencia.js" />
     <Content Include="Paginas\Scripts\CrudUsuario.js" />
     <Content Include="Paginas\Scripts\menu.js" />
-    <Content Include="Paginas\Scripts\RegistroPacientes.js" />
+    <Content Include="Paginas\Scripts\CrudRegistroPacientes.js" />
     <Content Include="Paginas\Urgencias.html" />
     <Content Include="Scripts\adminlte.js" />
     <Content Include="Scripts\adminlte.min.js" />
