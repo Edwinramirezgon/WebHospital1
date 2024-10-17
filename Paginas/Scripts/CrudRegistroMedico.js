@@ -49,8 +49,8 @@ async function Consultar() {
 
     }
 }
-
-async function Ejecutar(Metodo, Funcion) {
+// falta este
+/*async function Ejecutar(Metodo, Funcion) {
 
 
     let idpersona = $("#txtid_persona").val();
@@ -66,7 +66,7 @@ async function Ejecutar(Metodo, Funcion) {
     let URL = "https://localhost:44389/api/RegistroPacientes/" + Funcion + "?idpersona=" + idpersona + "&contacto=" + contacto + "&alergias=" + alergias + "&antecedentes=" + antecedentes;
     EjecutarComandoServicio(Metodo, URL, personas);
     LlenarTabla();
-}
+}*/
 
 class PERSONA {
     constructor(id_persona, nombre, apellido, fecha_nacimiento, direccion, telefono, email, genero) {
