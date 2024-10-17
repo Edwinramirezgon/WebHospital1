@@ -37,7 +37,7 @@ async function Consultar() {
 }
 
 class PERSONA {
-    constructor(id_persona, nombre, apellido, fecha_nacimiento, direccion, telefono, email, genero) {
+    constructor(id_persona, nombre, apellido, fecha_nacimiento, direccion, telefono, email, genero, id_pais) {
         this.id_persona = id_persona;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -46,6 +46,8 @@ class PERSONA {
         this.telefono = telefono;
         this.email = email;
         this.genero = genero;
+        this.id_pais = id_pais;
+
 
 
     }

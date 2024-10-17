@@ -117,27 +117,34 @@
                                                     <input type="text" class="form-control" id="txthorario" placeholder="HORARIO">
                                                 </div>
                                             </div>
-                                                                          
+                                            
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="txtpais">PAIS</label>
+                                                        <input type="number" class="form-control" id="txtpais" placeholder="PAIS">
+                                                    </div>
+                                              
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <br />
+                                                    <button type="button" id="btnInsertar" class="btn-block btn-lg btn-success" onclick="Ejecutar('POST','Insertar')">INSERTAR</button>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <br />
+                                                    <button type="button" id="btnActualizar" class="btn-block btn-lg btn-primary" onclick="Ejecutar('PUT','Actualizar')">ACTUALIZAR</button>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <br />
+                                                    <button type="button" id="btnEliminar" class="btn-block btn-lg btn-danger" onclick="Ejecutar('DELETE','Eliminar')">ELIMINAR</button>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <br />
+                                                    <button type="button" id="btnConsultar" class="btn-block btn-lg btn-warning" onclick="Consultar()">CONSULTAR</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <br />
-                                                <button type="button" id="btnInsertar" class="btn-block btn-lg btn-success" onclick="Ejecutar('POST','Insertar')">INSERTAR</button>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <br />
-                                                <button type="button" id="btnActualizar" class="btn-block btn-lg btn-primary" onclick="Ejecutar('PUT','Actualizar')">ACTUALIZAR</button>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <br />
-                                                <button type="button" id="btnEliminar" class="btn-block btn-lg btn-danger" onclick="Ejecutar('DELETE','Eliminar')">ELIMINAR</button>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <br />
-                                                <button type="button" id="btnConsultar" class="btn-block btn-lg btn-warning" onclick="Consultar()">CONSULTAR</button>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -145,6 +152,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
+                                                    <th>PAIS</th>
                                                     <th>NOMBRES</th>
                                                     <th>APELLIDOS</th>
                                                     <th>FECHA DE NACIMIENTO</th>

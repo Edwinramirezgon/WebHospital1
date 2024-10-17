@@ -17,6 +17,7 @@ async function Consultar() {
         $("#txttelefono").val(persona.telefono);
         $("#txtemail").val(persona.email);
         $("#txtgenero").val(persona.genero);
+        $("#txtpais").val(persona.id_pais);
         URL2 = "https://localhost:44389/api/RegistroMedicos/ConsultarXIDp?id=" + id_persona;
         const usuario = await ConsultarServicio(URL2);
         $("#txttipo").val(usuario.usuario1);
@@ -46,15 +47,16 @@ async function Consultar() {
         $("#txtespecialidad").val("");
         $("#txthorario").val("");
         $("#txtcontacto").val("");
+        $("#txtpais").val("");
 
     }
 }
-// falta este
-/*async function Ejecutar(Metodo, Funcion) {
+
+async function Ejecutar(Metodo, Funcion) {
 
 
-    let idpersona = $("#txtid_persona").val();
-    let tipo = $("#txttipo").val();
+    let id_persona = $("#txtid_persona").val();
+    let usuario1 = $("#txttipo").val();
     let rol = $("#txtrol").val();
     let especialidad = $("#txtespecialidad").val();
     let horario = $("#txthorario").val();
@@ -62,14 +64,15 @@ async function Consultar() {
 
 
     const personas = new PERSONA($("#txtid_persona").val(), $("#txtnombre").val(), $("#txtapellido").val(), $("#txtfecha_nacimiento ").val(),
-        $("#txtdireccion").val(), $("#txttelefono").val(), $("#txtemail").val(), $("#txtgenero").val());
-    let URL = "https://localhost:44389/api/RegistroPacientes/" + Funcion + "?idpersona=" + idpersona + "&contacto=" + contacto + "&alergias=" + alergias + "&antecedentes=" + antecedentes;
+        $("#txtdireccion").val(), $("#txttelefono").val(), $("#txtemail").val(), $("#txtgenero").val(), $("#txtpais").val());
+    let URL = "https://localhost:44389/api/RegistroMedicos/" + Funcion + "?id_persona=" + id_persona + "&usuario1=" + usuario1 + "&rol=" + rol + "&especialidad=" + especialidad
+        + "&horario=" + horario + "&contacto=" + contacto;
     EjecutarComandoServicio(Metodo, URL, personas);
     LlenarTabla();
-}*/
+}
 
 class PERSONA {
-    constructor(id_persona, nombre, apellido, fecha_nacimiento, direccion, telefono, email, genero) {
+    constructor(id_persona, nombre, apellido, fecha_nacimiento, direccion, telefono, email, genero, id_pais) {
         this.id_persona = id_persona;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -78,6 +81,8 @@ class PERSONA {
         this.telefono = telefono;
         this.email = email;
         this.genero = genero;
+        this.id_pais = id_pais;
+
 
 
     }
