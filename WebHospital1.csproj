@@ -193,6 +193,7 @@
     <Content Include="Paginas\Scripts\CrudPaciente.js" />
     <Content Include="Paginas\Scripts\CrudPago.js" />
     <Content Include="Paginas\Scripts\CrudPersona.js" />
+    <Content Include="Paginas\Scripts\CrudRegistroMedico.js" />
     <Content Include="Paginas\Scripts\CrudUrgencia.js" />
     <Content Include="Paginas\Scripts\CrudUsuario.js" />
     <Content Include="Paginas\Scripts\menu.js" />

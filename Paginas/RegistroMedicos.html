@@ -1,10 +1,188 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>REGISTRO DE MEDICOS</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link href="Estilos/css/all.min.css" rel="stylesheet" />
+    <link href="Estilos/adminlte.min.css" rel="stylesheet" />
+    <!--Estilos para las tablas-->
+    <link href="Estilos/dataTables.min.css" rel="stylesheet" />
+    <link href="Estilos/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body>
+<body class="hold-transition sidebar-mini">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12" id="dvMenu">
+                </div>
+                <div class="col-md-12">
+                    <div class="card card-navy">
+                        <div class="card-header">
+                            <h3 class="card-title">REGISTRO DE MEDICOS</h3>
+                        </div>
+                        <form id="frmIncapacidades">
+                            <div class="card-body">
+                                <div class="card card-gray-dark">
+                                    <div class="card-header">
+                                        <h3 class="card-title">DATOS</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="txtid_persona">ID</label>
+                                                    <input type="text" class="form-control" id="txtid_persona" placeholder="ID">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="txtnombre">NOMBRES</label>
+                                                    <input type="text" class="form-control" id="txtnombre" placeholder="NOMBRES">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="txtapellido">APELLIDOS</label>
+                                                    <input type="text" class="form-control" id="txtapellido" placeholder="APELLIDOS">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="txttipo">TIPO DE USUARIO</label>
+                                                    <input type="text" class="form-control" id="txttipo" placeholder="TIPO DE USUARIO">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="txtfecha_nacimiento">FECHA_DE_NACIMIENTO</label>
+                                                    <input type="date" class="form-control" id="txtfecha_nacimiento" placeholder="FECHA_DE_NACIMIENTO">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="txtdireccion">DIRECCION</label>
+                                                    <input type="text" class="form-control" id="txtdireccion" placeholder="DIRECCION">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="txttelefono">TELEFONO</label>
+                                                    <input type="text" class="form-control" id="txttelefono" placeholder="TELEFONO">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="txtemail">EMAIL</label>
+                                                    <input type="text" class="form-control" id="txtemail" placeholder="EMAIL">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="txtgenero">GENERO</label>
+                                                    <input type="text" class="form-control" id="txtgenero" placeholder="GENERO">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="txtcontacto">CONTACTO_DE_EMERGENCIA</label>
+                                                    <input type="text" class="form-control" id="txtcontacto" placeholder="CONTACTO_DE_EMERGENCIA">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="txtrol">ROL</label>
+                                                    <input type="text" class="form-control" id="txtrol" placeholder="ROL">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="txtespecialidad">ESPECIALIDAD</label>
+                                                    <input type="text" class="form-control" id="txtespecialidad" placeholder="ESPECIALIDAD">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txthorario">HORARIO</label>
+                                                    <input type="text" class="form-control" id="txthorario" placeholder="HORARIO">
+                                                </div>
+                                            </div>
+                                                                          
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <br />
+                                                <button type="button" id="btnInsertar" class="btn-block btn-lg btn-success" onclick="Ejecutar('POST','Insertar')">INSERTAR</button>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <br />
+                                                <button type="button" id="btnActualizar" class="btn-block btn-lg btn-primary" onclick="Ejecutar('PUT','Actualizar')">ACTUALIZAR</button>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <br />
+                                                <button type="button" id="btnEliminar" class="btn-block btn-lg btn-danger" onclick="Ejecutar('DELETE','Eliminar')">ELIMINAR</button>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <br />
+                                                <button type="button" id="btnConsultar" class="btn-block btn-lg btn-warning" onclick="Consultar()">CONSULTAR</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="tblMedicos" class="table table-bordered table-striped" style="width:100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>NOMBRES</th>
+                                                    <th>APELLIDOS</th>
+                                                    <th>FECHA DE NACIMIENTO</th>
+                                                    <th>DIRECCION</th>
+                                                    <th>TELEFONO</th>
+                                                    <th>EMAIL</th>
+                                                    <th>GENERO</th>
+                                                    <th>TIPO DE USUARIO</th>
+                                                    <th>ROL</th>
+                                                    <th>ESPECIALIDAD</th>
+                                                    <th>HORARIO</th>
+                                                    <th>TELEFONO DE CONTACTO</th>
+
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div id="dvMensaje" class=""></div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../Scripts/bootstrap.bundle.min.js"></script>
+    <script src="../Scripts/jquery.dataTables.min.js"></script>
+    <script src="Scripts/Comunes/CRUD.js"></script>
+    <script src="Scripts/CrudRegistroMedico.js"></script>
+    <script src="Scripts/menu.js"></script>
 
 </body>
 </html>
