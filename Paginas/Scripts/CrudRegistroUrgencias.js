@@ -1,29 +1,25 @@
 ﻿jQuery(function () {
+    LlenarComboXServicios("https://localhost:44389/api/RegistroUrgencias/LlenarCombo", "#cbopacientes");
+    LlenarComboXServicios("https://localhost:44389/api/RegistroUrgencias/LlenarCombo2", "#cbomedicos");
     LlenarTabla();
 });
 function LlenarTabla() {
-    LlenarTablaXServicios("https://localhost:44389/api/RegistroUrgencias/LlenarTabla", "#tblUrgencias");
+    LlenarTablaXServicios("https://localhost:44389/api/RegistroUrgencias/LlenarTabla", "#tblurgencias");
 }
 
 
 async function Consultar() {
-    let id_persona = $("#txtid_persona").val();
-    URL = "https://localhost:44389/api/RegistroPacientes/ConsultarXID?id=" + id_persona;
-    const persona = await ConsultarServicio(URL);
-    if (persona != null) {
-        $("#txtnombre").val(persona.nombre);
-        $("#txtapellido").val(persona.apellido);
-        $("#txtfecha_nacimiento").val(persona.fecha_nacimiento.split('T')[0]);
-        $("#txtdireccion").val(persona.direccion);
-        $("#txttelefono").val(persona.telefono);
-        $("#txtemail").val(persona.email);
-        $("#txtgenero").val(persona.genero);
-        $("#txtpais").val(persona.id_pais);
-        URL2 = "https://localhost:44389/api/RegistroPacientes/ConsultarXIDp?id=" + id_persona;
-        const paciente = await ConsultarServicio(URL2);
-        $("#txtcontacto").val(paciente.contacto_emergencia);
-        $("#txtalergias").val(paciente.alergias);
-        $("#txtantecedentes").val(paciente.antecedentes_medicos);
+    let id_urgencia = $("#txtid").val();
+    URL = "https://localhost:44389/api/RegistroUrgencias/ConsultarXID?id=" + id_urgencia;
+    const urgencia = await ConsultarServicio(URL);
+    if (urgencia != null) {
+        $("#cbopacientes").val(urgencia.id_paciente);
+        $("#cbomedicos").val(urgencia.id_medico);
+        $("#txtfecha_evento").val(urgencia.fecha_evento.split('T')[0]);
+        $("#txtdescripcion").val(urgencia.descripcion);
+        URL2 = "https://localhost:44389/api/RegistroUrgencias/ConsultarXID2?id=" + id_urgencia
+        const urg = await ConsultarServicio(URL2);
+        $("#txtestado").val(urg.estado_urgencia);       
         $("#dvMensaje").html("");
 
 
@@ -32,17 +28,11 @@ async function Consultar() {
     else {
 
         $("#dvMensaje").html("El paciente no existe en la base de datos");
-        $("#txtnombre").val("");
-        $("#txtapellido").val("");
-        $("#txtfecha_nacimiento").val("");
-        $("#txtdireccion").val("");
-        $("#txttelefono").val("");
-        $("#txtemail").val("");
-        $("#txtgenero").val("");
-        $("#txtcontacto").val("");
-        $("#txtalergias").val("");
-        $("#txtantecedentes").val("");
-        $("#txtpais").val("");
+        $("#cbopacientes").val("");
+        $("#cbomedicos").val("");
+        $("#txtfecha_evento").val("");
+        $("#txtdescripcion").val("");
+        $("#txtestado").val("");     
 
 
     }
@@ -51,23 +41,24 @@ async function Consultar() {
 async function Ejecutar(Metodo, Funcion) {
 
 
-    let idpersona = $("#txtid_persona").val();
-    let contacto = $("#txtcontacto").val();
-    let alergias = $("#txtalergias").val();
-    let antecedentes = $("#txtantecedentes").val();
+    let estado_urgencia = $("#txtestado").val(); 
+    let id_urgencia = $("#txtid").val();
+  
 
-    const urgencia = new URGENCIA($("#txtid_evento").val(), $("#cboestado_urgencia").val(), $("#txtHospitalzacion").val());
-    let URL = "https://localhost:44389/api/RegistroUrgencias/" + Funcion;
+    const urgencia = new EventoMedico($("#txtid").val(), $("#cbopacientes").val(), $("#cbomedicos").val(), $("#txtfecha_evento ").val(),
+        $("#txtdescripcion").val());
+    let URL = "https://localhost:44389/api/RegistroUrgencias/" + Funcion + "?estado_urgencia=" + estado_urgencia;
     EjecutarComandoServicio(Metodo, URL, urgencia);
     LlenarTabla();
 }
 
-class URGENCIA {
-    constructor(id_urgencia, id_evento, estado_urgencia, id_hospitalizacion) {
-        this.id_urgencia = id_urgencia;
+class EventoMedico {
+    constructor(id_evento, id_paciente, id_medico, fecha_evento, descripcion) {
         this.id_evento = id_evento;
-        this.estado_urgencia = estado_urgencia;
-        this.id_hospitalizacion = id_hospitalizacion;
+        this.id_paciente = id_paciente;
+        this.id_medico = id_medico;
+        this.fecha_evento = fecha_evento;
+        this.descripcion = descripcion;
 
     }
 }
