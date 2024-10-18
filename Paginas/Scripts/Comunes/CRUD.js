@@ -48,7 +48,7 @@ async function LlenarComboXServicios(URLServicio, ComboLlenar) {
                 }
             });
         const Rpta = await Respuesta.json();
-        $(ComboLlenar).empty(); n
+        $(ComboLlenar).empty();
         for (i = 0; i < Rpta.length; i++) {
             $(ComboLlenar).append('<option value=' + Rpta[i].Codigo + '>' + Rpta[i].Nombre + '</option>');
         }

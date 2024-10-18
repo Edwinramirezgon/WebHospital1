@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>URGENCIAS</title>
+    <title>REGISTRO DE HABITACIONES</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link href="Estilos/css/all.min.css" rel="stylesheet" />
@@ -23,66 +23,61 @@
                 <div class="col-md-12">
                     <div class="card card-navy">
                         <div class="card-header">
-                            <h3 class="card-title">URGENCIAS</h3>
+                            <h3 class="card-title">ADMINISTRACIÓN DE HABITACIONES</h3>
                         </div>
-                        <form id="frmIncapacidades">
+                        <form id="frmCitas">
                             <div class="card-body">
                                 <div class="card card-gray-dark">
                                     <div class="card-header">
-                                        <h3 class="card-title">DATOS</h3>
+                                        <h3 class="card-title">INFORMACIÓN BÁSICA</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="txtid_evento">ID</label>
-                                                    <input type="text" class="form-control" id="txtid_evento" placeholder="ID">
+                                                    <label for="txtid_habitacion">ID DE LA HABITACION</label>
+                                                    <input type="number" class="form-control" id="txtid_habitacion" placeholder="ID DE LA HABITACION">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="txtPaciente">PACIENTE</label>
-                                                    <input type="number" class="form-control" id="txtPaciente" placeholder="PACIENTE">
+                                                    <label for="txtnumero_habitacion">NUMERO DE LA HABITACION</label>
+                                                    <input type="number" class="form-control" id="txtnumero_habitacion" placeholder="NUMERO DE LA HABITACION">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="txtMedico">MEDICO TRATANTE</label>
-                                                    <input type="number" class="form-control" id="txtMedico" placeholder="MEDICO TRATANTE">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="cboestado_urgencia">ESTADO URGENCIA</label>
-                                                    <select class="form-control" id="cboestado_urgencia">
-                                                        <option value="0">HOSPITALIZADO</option>
-                                                        <option value="1">TRATAMIENTO</option>
-                                                        <option value="2">ATENTIDA</option>
+                                                    <label for="cbohabitacion">TIPO DE HABITACION</label>
+                                                    <select class="form-control" id="cbohabitacion">
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="txtestado_habitacion">ESTADO DE LA HABITACION</label>
+                                                    <input type="text" class="form-control" id="txtestado_habitacion" placeholder="ESTADO DE LA HABITACION">
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="txtHospitalzacion">HOSPITALIZACIÓN</label>
-                                                    <input type="number" class="form-control" id="txtHospitalzacion" placeholder="HOSPITALIZACIÓN">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="txtfecha_urgencia">FECHA DE URGENCIA</label>
-                                                    <input type="date" class="form-control" id="txtfecha_urgencia" placeholder="FECHA DE URGENCIA">
-                                                </div>
-                                            </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="txtdescripcion">DESCRIPCIÓN</label>
-                                                    <input type="text" class="form-control" id="txtdescripcion" placeholder="DESCRIPCIÓN">
+                                                    <label for="txtdescripcion">DESCRIPCION DE LA HABITACION</label>
+                                                    <input type="text" class="form-control" id="txtdescripcion" placeholder="DESCRIPCION DE LA HABITACION">
                                                 </div>
                                             </div>
-                                        </div>
 
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card card-lightblue">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Acciones</h3>
+                                    </div>
+                                    <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <br />
@@ -105,19 +100,17 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <table id="tblUrgencias" class="table table-bordered table-striped" style="width:100%;">
+                                        <table id="tblhabitacion" class="table table-bordered table-striped" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>ID_URGENCIA</th>
-                                                    <th>ID_PACIENTE</th>
-                                                    <th>NOMBRES</th>
-                                                    <th>APELLIDOS</th>
-                                                    <th>FECHA URGENCIA</th>
-                                                    <th>MEDICO TRATANTE</th>
-                                                    <th>CONTACTO DE EMERGENCIA</th>
-                                                    <th>ALERGIAS</th>
-                                                    <th>ANTECEDENTES</th>
-                                                    <th>DESCRIPCION URGENCIA</th>
+                                                    <th>ID</th>
+                                                    <th>NUMERO_HABITACION</th>
+                                                    <th>ESTADO</th>
+                                                    <th>DESCRIPCION</th>
+                                                    <th>TIPO_DE_HABITACION</th>
+                                    
+
+
                                                 </tr>
                                             </thead>
                                         </table>
@@ -127,21 +120,18 @@
                             <div class="card-footer">
                                 <div id="dvMensaje" class=""></div>
                             </div>
-
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
+    </section>
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <script src="../Scripts/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/jquery.dataTables.min.js"></script>
     <script src="Scripts/Comunes/CRUD.js"></script>
-    <script src="Scripts/CrudRegistroUrgencias.js"></script>
+    <script src="Scripts/CrudRegistroHabitaciones.js"></script>
     <script src="Scripts/menu.js"></script>
-
 </body>
 </html>

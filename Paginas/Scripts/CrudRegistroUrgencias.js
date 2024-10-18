@@ -1,9 +1,8 @@
-﻿jQuery(function () {  
-    LlenarComboXServicios("https://localhost:44389/api/RegistroPacientes/LlenarCombo", "#cbopais");
+﻿jQuery(function () {
     LlenarTabla();
 });
 function LlenarTabla() {
-    LlenarTablaXServicios("https://localhost:44389/api/RegistroPacientes/LlenarTabla", "#tblPacientes");
+    LlenarTablaXServicios("https://localhost:44389/api/RegistroUrgencias/LlenarTabla", "#tblUrgencias");
 }
 
 
@@ -19,14 +18,14 @@ async function Consultar() {
         $("#txttelefono").val(persona.telefono);
         $("#txtemail").val(persona.email);
         $("#txtgenero").val(persona.genero);
-        $("#cbopais").val(persona.id_pais);
+        $("#txtpais").val(persona.id_pais);
         URL2 = "https://localhost:44389/api/RegistroPacientes/ConsultarXIDp?id=" + id_persona;
         const paciente = await ConsultarServicio(URL2);
-       $("#txtcontacto").val(paciente.contacto_emergencia);
-       $("#txtalergias").val(paciente.alergias);
-        $("#txtantecedentes").val(paciente.antecedentes_medicos);  
+        $("#txtcontacto").val(paciente.contacto_emergencia);
+        $("#txtalergias").val(paciente.alergias);
+        $("#txtantecedentes").val(paciente.antecedentes_medicos);
         $("#dvMensaje").html("");
-      
+
 
 
     }
@@ -43,7 +42,7 @@ async function Consultar() {
         $("#txtcontacto").val("");
         $("#txtalergias").val("");
         $("#txtantecedentes").val("");
-        $("#cbopais").val("");
+        $("#txtpais").val("");
 
 
     }
@@ -57,26 +56,18 @@ async function Ejecutar(Metodo, Funcion) {
     let alergias = $("#txtalergias").val();
     let antecedentes = $("#txtantecedentes").val();
 
-    const personas = new PERSONA($("#txtid_persona").val(), $("#txtnombre").val(), $("#txtapellido").val(), $("#txtfecha_nacimiento ").val(),
-        $("#txtdireccion").val(), $("#txttelefono").val(), $("#txtemail").val(), $("#txtgenero").val(), $("#cbopais").val());
-    let URL = "https://localhost:44389/api/RegistroPacientes/" + Funcion + "?idpersona=" + idpersona + "&contacto=" + contacto + "&alergias=" + alergias +  "&antecedentes=" + antecedentes;
-    EjecutarComandoServicio(Metodo, URL, personas);
+    const urgencia = new URGENCIA($("#txtid_evento").val(), $("#cboestado_urgencia").val(), $("#txtHospitalzacion").val());
+    let URL = "https://localhost:44389/api/RegistroUrgencias/" + Funcion;
+    EjecutarComandoServicio(Metodo, URL, urgencia);
     LlenarTabla();
 }
 
-class PERSONA {
-    constructor(id_persona, nombre, apellido, fecha_nacimiento, direccion, telefono, email, genero, id_pais) {
-        this.id_persona = id_persona;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.fecha_nacimiento = fecha_nacimiento;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.email = email;
-        this.genero = genero;
-        this.id_pais = id_pais;
-
-
+class URGENCIA {
+    constructor(id_urgencia, id_evento, estado_urgencia, id_hospitalizacion) {
+        this.id_urgencia = id_urgencia;
+        this.id_evento = id_evento;
+        this.estado_urgencia = estado_urgencia;
+        this.id_hospitalizacion = id_hospitalizacion;
 
     }
 }

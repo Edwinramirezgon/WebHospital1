@@ -1,4 +1,6 @@
 ﻿jQuery(function () {
+    LlenarComboXServicios("https://localhost:44389/api/RegistroMedicos/LlenarCombo", "#cbopais");
+
     LlenarTabla();
 });
 function LlenarTabla() {
@@ -7,7 +9,7 @@ function LlenarTabla() {
 
 async function Consultar() {
     let id_persona = $("#txtid_persona").val();
-    URL = "https://localhost:44389/api/RegistroPacientes/ConsultarXID?id=" + id_persona;
+    URL = "https://localhost:44389/api/RegistroMedicos/ConsultarXID?id=" + id_persona;
     const persona = await ConsultarServicio(URL);
     if (persona != null) {
         $("#txtnombre").val(persona.nombre);
@@ -17,7 +19,7 @@ async function Consultar() {
         $("#txttelefono").val(persona.telefono);
         $("#txtemail").val(persona.email);
         $("#txtgenero").val(persona.genero);
-        $("#txtpais").val(persona.id_pais);
+        $("#cbopais").val(persona.id_pais);
         URL2 = "https://localhost:44389/api/RegistroMedicos/ConsultarXIDp?id=" + id_persona;
         const usuario = await ConsultarServicio(URL2);
         $("#txttipo").val(usuario.usuario1);
@@ -47,7 +49,7 @@ async function Consultar() {
         $("#txtespecialidad").val("");
         $("#txthorario").val("");
         $("#txtcontacto").val("");
-        $("#txtpais").val("");
+        $("#cbopais").val("");
 
     }
 }
@@ -64,7 +66,7 @@ async function Ejecutar(Metodo, Funcion) {
 
 
     const personas = new PERSONA($("#txtid_persona").val(), $("#txtnombre").val(), $("#txtapellido").val(), $("#txtfecha_nacimiento ").val(),
-        $("#txtdireccion").val(), $("#txttelefono").val(), $("#txtemail").val(), $("#txtgenero").val(), $("#txtpais").val());
+        $("#txtdireccion").val(), $("#txttelefono").val(), $("#txtemail").val(), $("#txtgenero").val(), $("#cbopais").val());
     let URL = "https://localhost:44389/api/RegistroMedicos/" + Funcion + "?id_persona=" + id_persona + "&usuario1=" + usuario1 + "&rol=" + rol + "&especialidad=" + especialidad
         + "&horario=" + horario + "&contacto=" + contacto;
     EjecutarComandoServicio(Metodo, URL, personas);
