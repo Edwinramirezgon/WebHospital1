@@ -4,12 +4,12 @@ async function Ejecutar(Metodo, Funcion) {
     const personas = new PERSONA($("#txtid_persona").val(), $("#txtnombre").val(), $("#txtapellido").val(), $("#txtfecha_nacimiento ").val(),
         $("#txtdireccion").val(), $("#txttelefono").val(), $("#txtemail").val(), $("#txtgenero").val());
     let URL = "https://localhost:44389/api/Personas/" + Funcion;
-    EjecutarComandoServicio(Metodo, URL, personas);
+    EjecutarServicioAuth(Metodo, URL, personas);
 }
 async function Consultar() {
     let id_persona = $("#txtid_persona").val();
     URL = "https://localhost:44389/api/Personas/ConsultarXID?id=" + id_persona;
-    const persona = await ConsultarServicio(URL);
+    const persona = await ConsultarServicioAuth(URL);
     if (persona != null) {
         $("#txtnombre").val(persona.nombre);
         $("#txtapellido").val(persona.apellido);

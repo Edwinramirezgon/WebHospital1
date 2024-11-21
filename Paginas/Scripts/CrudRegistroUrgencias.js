@@ -1,24 +1,24 @@
 ﻿jQuery(function () {
-    LlenarComboXServicios("https://localhost:44389/api/RegistroUrgencias/LlenarCombo", "#cbopacientes");
-    LlenarComboXServicios("https://localhost:44389/api/RegistroUrgencias/LlenarCombo2", "#cbomedicos");
+    LlenarComboXServiciosAuth("https://localhost:44389/api/RegistroUrgencias/LlenarCombo", "#cbopacientes");
+    LlenarComboXServiciosAuth("https://localhost:44389/api/RegistroUrgencias/LlenarCombo2", "#cbomedicos");
     LlenarTabla();
 });
 function LlenarTabla() {
-    LlenarTablaXServicios("https://localhost:44389/api/RegistroUrgencias/LlenarTabla", "#tblurgencias");
+    LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroUrgencias/LlenarTabla", "#tblurgencias");
 }
 
 
 async function Consultar() {
     let id_urgencia = $("#txtid").val();
     URL = "https://localhost:44389/api/RegistroUrgencias/ConsultarXID?id=" + id_urgencia;
-    const urgencia = await ConsultarServicio(URL);
+    const urgencia = await ConsultarServicioAuth(URL);
     if (urgencia != null) {
         $("#cbopacientes").val(urgencia.id_paciente);
         $("#cbomedicos").val(urgencia.id_medico);
         $("#txtfecha_evento").val(urgencia.fecha_evento.split('T')[0]);
         $("#txtdescripcion").val(urgencia.descripcion);
         URL2 = "https://localhost:44389/api/RegistroUrgencias/ConsultarXID2?id=" + id_urgencia
-        const urg = await ConsultarServicio(URL2);
+        const urg = await ConsultarServicioAuth(URL2);
         $("#txtestado").val(urg.estado_urgencia);       
         $("#dvMensaje").html("");
 
@@ -48,7 +48,7 @@ async function Ejecutar(Metodo, Funcion) {
     const urgencia = new EventoMedico($("#txtid").val(), $("#cbopacientes").val(), $("#cbomedicos").val(), $("#txtfecha_evento ").val(),
         $("#txtdescripcion").val());
     let URL = "https://localhost:44389/api/RegistroUrgencias/" + Funcion + "?estado_urgencia=" + estado_urgencia;
-    EjecutarComandoServicio(Metodo, URL, urgencia);
+    EjecutarServicioAuth(Metodo, URL, urgencia);
     LlenarTabla();
 }
 

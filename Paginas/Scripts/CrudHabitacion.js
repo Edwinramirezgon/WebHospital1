@@ -4,12 +4,12 @@ async function Ejecutar(Metodo, Funcion) {
     const habitaciones = new Habitacion($("#txtid_habitacion").val(), $("#txtnumero_habitacion").val(), $("#txttipo_habitacion").val(),
         $("#txtestado_habitacion ").val(), $("#txtdescripcion").val());
     let URL = "https://localhost:44389/api/Habitaciones/" + Funcion;
-    EjecutarComandoServicio(Metodo, URL, habitaciones);
+    EjecutarServicioAuth(Metodo, URL, habitaciones);
 }
 async function Consultar() {
     let id_habitacion = $("#txtid_habitacion").val();
     URL = "https://localhost:44389/api/Habitaciones/ConsultarXID?id=" + id_habitacion;
-    const habitacion = await ConsultarServicio(URL);
+    const habitacion = await ConsultarServicioAuth(URL);
     if (habitacion != null) {
         $("#txtnumero_habitacion").val(habitacion.numero_habitacion);
         $("#txttipo_habitacion").val(habitacion.tipo_habitacion);

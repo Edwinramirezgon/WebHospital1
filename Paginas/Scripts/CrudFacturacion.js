@@ -4,12 +4,12 @@ async function Ejecutar(Metodo, Funcion) {
     const facturas = new Facturacion($("#txtid_factura").val(), $("#txtid_paciente").val(), $("#txtid_evento").val(), $("#txttotal ").val(),
         $("#txtmetodo_pago").val(), $("#txtfecha_emision").val(), $("#txtestado_pago").val());
     let URL = "https://localhost:44389/api/Facturaciones/" + Funcion;
-    EjecutarComandoServicio(Metodo, URL, facturas);
+    EjecutarServicioAuth(Metodo, URL, facturas);
 }
 async function Consultar() {
     let id_factura = $("#txtid_factura").val();
     URL = "https://localhost:44389/api/Facturaciones/ConsultarXID?id=" + id_factura;
-    const factura = await ConsultarServicio(URL);
+    const factura = await ConsultarServicioAuth(URL);
     if (factura != null) {
         $("#txtid_paciente").val(factura.id_paciente);
         $("#txtid_evento").val(factura.id_evento);

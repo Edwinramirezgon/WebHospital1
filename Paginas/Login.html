@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Hospital</title>
+    <!-- Font Awesome -->
+    <link href="Estilos/css/all.min.css" rel="stylesheet" />
+    <!-- AdminLTE Theme style -->
+    <link href="Estilos/adminlte.min.css" rel="stylesheet" />
+    <style>
+        /* Fondo con gradiente */
+        body {
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-logo h1 {
+            color: #0077b6;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .login-box-msg {
+            text-align: center;
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #0077b6;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-primary:hover {
+                background-color: #005b8c;
+                transform: translateY(-2px);
+            }
+
+        #dvMensaje {
+            margin-top: 1rem;
+            display: none;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .mensaje-error {
+            background-color: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .mensaje-exito {
+            background-color: #dcfce7;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="login-logo">
+            <h1>Hospital</h1>
+        </div>
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Ingreso a la Plataforma del Hospital</p>
+                <form id="loginForm" onsubmit="return false;">
+                    <div class="input-group mb-3">
+                        <input type="text" id="txtUsuario" class="form-control" placeholder="Cédula" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" id="txtClave" class="form-control" placeholder="Contraseña" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-block" onclick="Ingresar()">INGRESAR</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div id="dvMensaje"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../Scripts/bootstrap.bundle.min.js"></script>
+    <script src="Scripts/Login.js"></script>
+    <script src="Scripts/Comunes/CRUD.js"></script>
+    <script>
+        function showMessage(message, type) {
+            const messageDiv = document.getElementById('dvMensaje');
+            messageDiv.style.display = 'block';
+            messageDiv.className = ''; // Limpia clases anteriores
+            messageDiv.classList.add(type === 'error' ? 'mensaje-error' : 'mensaje-exito');
+            messageDiv.textContent = message;
+
+            // Ocultar mensaje después de 5 segundos
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+
+       
+    
+    </script>
+</body>
+</html>

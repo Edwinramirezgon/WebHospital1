@@ -1,16 +1,16 @@
 ﻿jQuery(function () {
-    LlenarComboXServicios("https://localhost:44389/api/RegistroMedicos/LlenarCombo", "#cbopais");
+    LlenarComboXServiciosAuth("https://localhost:44389/api/RegistroMedicos/LlenarCombo", "#cbopais");
 
     LlenarTabla();
 });
 function LlenarTabla() {
-    LlenarTablaXServicios("https://localhost:44389/api/RegistroMedicos/LlenarTabla", "#tblMedicos");
+    LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroMedicos/LlenarTabla", "#tblMedicos");
 }
 
 async function Consultar() {
     let id_persona = $("#txtid_persona").val();
     URL = "https://localhost:44389/api/RegistroMedicos/ConsultarXID?id=" + id_persona;
-    const persona = await ConsultarServicio(URL);
+    const persona = await ConsultarServicioAuth(URL);
     if (persona != null) {
         $("#txtnombre").val(persona.nombre);
         $("#txtapellido").val(persona.apellido);
@@ -21,11 +21,11 @@ async function Consultar() {
         $("#txtgenero").val(persona.genero);
         $("#cbopais").val(persona.id_pais);
         URL2 = "https://localhost:44389/api/RegistroMedicos/ConsultarXIDp?id=" + id_persona;
-        const usuario = await ConsultarServicio(URL2);
+        const usuario = await ConsultarServicioAuth(URL2);
         $("#txttipo").val(usuario.usuario1);
         $("#txtrol").val(usuario.rol);
         URL3 = "https://localhost:44389/api/Medicos/ConsultarXID?id=" + usuario.id_usuario;
-        const medico = await ConsultarServicio(URL3);
+        const medico = await ConsultarServicioAuth(URL3);
         $("#txtespecialidad").val(medico.especialidad);
         $("#txthorario").val(medico.horario);
         $("#txtcontacto").val(medico.telefono_contacto);
@@ -48,6 +48,8 @@ async function Consultar() {
         $("#txtrol").val("");
         $("#txtespecialidad").val("");
         $("#txthorario").val("");
+        $("#txtpassword").val("");
+        $("#txtConfirmPassword").val("");
         $("#txtcontacto").val("");
         $("#cbopais").val("");
 
@@ -63,18 +65,23 @@ async function Ejecutar(Metodo, Funcion) {
     let especialidad = $("#txtespecialidad").val();
     let horario = $("#txthorario").val();
     let contacto = $("#txtcontacto").val();
-
-
-    const personas = new PERSONA($("#txtid_persona").val(), $("#txtnombre").val(), $("#txtapellido").val(), $("#txtfecha_nacimiento ").val(),
-        $("#txtdireccion").val(), $("#txttelefono").val(), $("#txtemail").val(), $("#txtgenero").val(), $("#cbopais").val());
-    let URL = "https://localhost:44389/api/RegistroMedicos/" + Funcion + "?id_persona=" + id_persona + "&usuario1=" + usuario1 + "&rol=" + rol + "&especialidad=" + especialidad
-        + "&horario=" + horario + "&contacto=" + contacto;
-    EjecutarComandoServicio(Metodo, URL, personas);
-    LlenarTabla();
+    let password = $("#txtpassword").val();
+    let confirmpassword = $("#txtConfirmPassword").val();
+    if (password != confirmpassword) {
+        $("#dvMensaje").html("Las contraseñas no coinciden");
+        return;
+    } else if (password == confirmpassword) {
+        const personas = new PERSONA($("#txtid_persona").val(), $("#txtnombre").val(), $("#txtapellido").val(), $("#txtfecha_nacimiento ").val(),
+            $("#txtdireccion").val(), $("#txttelefono").val(), $("#txtemail").val(), $("#txtgenero").val(), $("#cbopais").val(), $("#txtpassword").val());
+        let URL = "https://localhost:44389/api/RegistroMedicos/" + Funcion + "?id_persona=" + id_persona + "&usuario1=" + usuario1 + "&rol=" + rol + "&especialidad=" + especialidad
+            + "&horario=" + horario + "&contacto=" + contacto + "&password=" + password;
+        EjecutarServicioAuth(Metodo, URL, personas);
+        LlenarTabla();
+    }
 }
 
 class PERSONA {
-    constructor(id_persona, nombre, apellido, fecha_nacimiento, direccion, telefono, email, genero, id_pais) {
+    constructor(id_persona, nombre, apellido, fecha_nacimiento, direccion, telefono, email, genero, id_pais, password) {
         this.id_persona = id_persona;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -84,7 +91,7 @@ class PERSONA {
         this.email = email;
         this.genero = genero;
         this.id_pais = id_pais;
-
+        this.password = password;
 
 
     }

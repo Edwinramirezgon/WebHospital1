@@ -1,16 +1,16 @@
 ﻿jQuery(function () {  
-    LlenarComboXServicios("https://localhost:44389/api/RegistroPacientes/LlenarCombo", "#cbopais");
+    LlenarComboXServiciosAuth("https://localhost:44389/api/RegistroPacientes/LlenarCombo", "#cbopais");
     LlenarTabla();
 });
 function LlenarTabla() {
-    LlenarTablaXServicios("https://localhost:44389/api/RegistroPacientes/LlenarTabla", "#tblPacientes");
+    LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroPacientes/LlenarTabla", "#tblPacientes");
 }
 
 
 async function Consultar() {
     let id_persona = $("#txtid_persona").val();
     URL = "https://localhost:44389/api/RegistroPacientes/ConsultarXID?id=" + id_persona;
-    const persona = await ConsultarServicio(URL);
+    const persona = await ConsultarServicioAuth(URL);
     if (persona != null) {
         $("#txtnombre").val(persona.nombre);
         $("#txtapellido").val(persona.apellido);
@@ -21,7 +21,7 @@ async function Consultar() {
         $("#txtgenero").val(persona.genero);
         $("#cbopais").val(persona.id_pais);
         URL2 = "https://localhost:44389/api/RegistroPacientes/ConsultarXIDp?id=" + id_persona;
-        const paciente = await ConsultarServicio(URL2);
+        const paciente = await ConsultarServicioAuth(URL2);
        $("#txtcontacto").val(paciente.contacto_emergencia);
        $("#txtalergias").val(paciente.alergias);
         $("#txtantecedentes").val(paciente.antecedentes_medicos);  
@@ -60,7 +60,7 @@ async function Ejecutar(Metodo, Funcion) {
     const personas = new PERSONA($("#txtid_persona").val(), $("#txtnombre").val(), $("#txtapellido").val(), $("#txtfecha_nacimiento ").val(),
         $("#txtdireccion").val(), $("#txttelefono").val(), $("#txtemail").val(), $("#txtgenero").val(), $("#cbopais").val());
     let URL = "https://localhost:44389/api/RegistroPacientes/" + Funcion + "?idpersona=" + idpersona + "&contacto=" + contacto + "&alergias=" + alergias +  "&antecedentes=" + antecedentes;
-    EjecutarComandoServicio(Metodo, URL, personas);
+    EjecutarServicioAuth(Metodo, URL, personas);
     LlenarTabla();
 }
 

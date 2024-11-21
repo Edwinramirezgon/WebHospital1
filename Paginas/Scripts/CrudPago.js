@@ -4,12 +4,12 @@ async function Ejecutar(Metodo, Funcion) {
     const pagos = new PAGO($("#txtid_pago").val(), $("#txtid_factura").val(), $("#txtmetodo_pago").val(), $("#txtmonto_pagado ").val(),
         $("#txtfecha_pago").val());
     let URL = "https://localhost:44389/api/Pagos/" + Funcion;
-    EjecutarComandoServicio(Metodo, URL, pagos);
+    EjecutarServicioAuth(Metodo, URL, pagos);
 }
 async function Consultar() {
     let id_pago = $("#txtid_pago").val();
     URL = "https://localhost:44389/api/Pagos/ConsultarXID?id=" + id_pago;
-    const pago = await ConsultarServicio(URL);
+    const pago = await ConsultarServicioAuth(URL);
     if (pago != null) {
         $("#txtid_factura").val(pago.id_factura);
         $("#txtmetodo_pago").val(pago.metodo_pago);
