@@ -21,20 +21,45 @@ async function EjecutarServicioAuth(Metodo, url, objeto) {
 }
 async function EjecutarServicioRpta(Metodo, url, objeto) {
     try {
-        const Resultado = await fetch(url,
-            {
-                method: Metodo,
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(objeto)
-            });
+        // Extraer el token de las cookies
+        const cookies = document.cookie.split(';').reduce((acc, cookie) => {
+            const [key, value] = cookie.trim().split('=');
+            acc[key] = value;
+            return acc;
+        }, {});
+
+        const token = cookies.token;
+
+        // Configurar los encabezados
+        const headers = {
+            "Content-Type": "application/json"
+        };
+
+        // Agregar el token al encabezado Authorization solo si existe y no es la ruta de login
+        if (token && !url.includes("/api/Login/Ingresar")) {
+            headers["Authorization"] = `Bearer ${token}`;
+        }
+
+        // Hacer la solicitud
+        const Resultado = await fetch(url, {
+            method: Metodo,
+            mode: "cors",
+            headers: headers,
+            body: JSON.stringify(objeto)
+        });
+
+        // Validar la respuesta
+        if (!Resultado.ok) {
+            throw new Error(`Error ${Resultado.status}: ${Resultado.statusText}`);
+        }
+
         const Respuesta = await Resultado.json();
         return Respuesta;
-    }
-    catch (error) {
-        $("#dvMensaje").html(error);
+
+    } catch (error) {
+        // Mostrar el mensaje de error en el contenedor
+        $("#dvMensaje").html(`<div class="alert alert-danger">${error.message}</div>`);
+        console.error("Error en la solicitud:", error);
     }
 }
 async function EjecutarServicioRptaAuth(Metodo, url, objeto) {
@@ -159,3 +184,4 @@ function getCookie(cname) {
     }
     return "";
 }
+
