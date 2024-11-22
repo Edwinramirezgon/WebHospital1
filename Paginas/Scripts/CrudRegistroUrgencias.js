@@ -37,6 +37,22 @@ async function Consultar() {
 
     }
 }
+function Editar(ID, ID_PACIENTE, ID_MEDICO, FECHA_DE_URGENCIA, DESCRIPCION_DE_URGENCIA, ESTADO_DE_URGENCIA) {
+    $("#txtid").val(ID);
+    $("#cbopacientes").val(ID_PACIENTE);
+    $("#cbomedicos").val(ID_MEDICO);
+    $("#txtfecha_evento").val(FECHA_DE_URGENCIA.split('T')[0]);
+    $("#txtdescripcion").val(DESCRIPCION_DE_URGENCIA); 
+    $("#txtestado").val(ESTADO_DE_URGENCIA);
+    $("#dvMensaje").html("");
+}
+
+function Eliminar(ID) {
+    const urgencia = new EventoMedico(ID, $("#cbopacientes").val(), $("#cbomedicos").val(), $("#txtfecha_evento ").val(),
+        $("#txtdescripcion").val());
+    let URL = "https://localhost:44389/api/RegistroUrgencias/Eliminar?estado_urgencia=" + ID;
+    EjecutarServicioAuth('DELETE', URL, urgencia);
+}
 
 async function Ejecutar(Metodo, Funcion) {
 

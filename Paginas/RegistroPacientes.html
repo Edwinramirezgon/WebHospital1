@@ -106,48 +106,82 @@
                                             </div>
                                         </div>
                                         <div class="row">
+
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="txtgenero">GENERO</label>
-                                                    <input type="text" class="form-control" id="txtgenero" placeholder="GENERO">
+                                                    <select class="form-control" id="txtgenero">
+                                                        <option value="0">-- Selecciona un Genero --</option>
+                                                        <option value="M">Masculino</option>
+                                                        <option value="F">Femenino</option>
+                                                    </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="txtcontacto">CONTACTO_DE_EMERGENCIA</label>
                                                     <input type="text" class="form-control" id="txtcontacto" placeholder="CONTACTO_DE_EMERGENCIA">
                                                 </div>
                                             </div>
+
+
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="txtalergias">ALERGIAS</label>
-                                                    <input type="text" class="form-control" id="txtalergias" placeholder="ALERGIAS">
+                                                    <select class="form-control" id="txtalergias" name="alergias">
+                                                        <option value="0">-- Selecciona una Alergia --</option>
+                                                        <option value="Ninguna">Ninguna</option>
+                                                        <option value="Penicilina">Penicilina</option>
+                                                        <option value="Mariscos">Mariscos</option>
+                                                        <option value="Pescado">Pescado</option>
+                                                        <option value="Lactosa">Lactosa</option>
+                                                        <option value="Gluten">Gluten</option>
+                                                        <option value="Frutos secos">Frutos secos</option>
+                                                        <option value="Ácaros del polvo">Ácaros del polvo</option>
+                                                        <option value="Polen">Polen</option>
+                                                        <option value="Caspa de animales">Caspa de animales</option>
+                                                        <option value="Aspirina">Aspirina</option>
+                                                        <option value="Latex">Latex</option>
+                                                    </select>
                                                 </div>
                                             </div>
+
+
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="txtantecedentes">ANTECEDENTES</label>
-                                                    <input type="text" class="form-control" id="txtantecedentes" placeholder="ANTECEDENTES">
+                                                    <select class="form-control" id="txtantecedentes" name="antecedentes">
+                                                        <option value="0">-- Selecciona un Antecedente --</option>
+                                                        <option value="Ninguno">Ninguno</option>
+                                                        <option value="Hipertensión">Hipertensión</option>
+                                                        <option value="Diabetes">Diabetes</option>
+                                                        <option value="Enfermedad cardiovascular">Enfermedad cardiovascular</option>
+                                                        <option value="Asma">Asma</option>
+                                                        <option value="Cáncer">Cáncer</option>
+                                                        <option value="Enfermedades renales">Enfermedades renales</option>
+                                                        <option value="Accidente cerebrovascular (ACV)">Accidente cerebrovascular (ACV)</option>
+                                                        <option value="Alergias graves">Alergias graves</option>
+                                                        <option value="Enfermedades autoinmunes">Enfermedades autoinmunes</option>
+                                                        <option value="Trastornos psiquiátricos">Trastornos psiquiátricos</option>
+                                                        <option value="Enfermedades respiratorias crónicas">Enfermedades respiratorias crónicas</option>
+                                                    </select>
                                                 </div>
                                             </div>
+
+
+
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-md-6">
                                                 <br />
                                                 <button type="button" id="btnInsertar" class="btn-block btn-lg btn-success" onclick="Ejecutar('POST','Insertar')">INSERTAR</button>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-6">
                                                 <br />
                                                 <button type="button" id="btnActualizar" class="btn-block btn-lg btn-primary" onclick="Ejecutar('PUT','Actualizar')">ACTUALIZAR</button>
                                             </div>
-                                            <div class="col-md-3">
-                                                <br />
-                                                <button type="button" id="btnEliminar" class="btn-block btn-lg btn-danger" onclick="Ejecutar('DELETE','Eliminar')">ELIMINAR</button>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <br />
-                                                <button type="button" id="btnConsultar" class="btn-block btn-lg btn-warning" onclick="Consultar()">CONSULTAR</button>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -168,6 +202,8 @@
                                                     <th>CONTACTO DE EMERGENCIA</th>
                                                     <th>ALERGIAS</th>
                                                     <th>ANTECEDENTES</th>
+                                                    <th>EDITAR</th>
+                                                    <th>ELIMINAR</th>
 
                                                 </tr>
                                             </thead>

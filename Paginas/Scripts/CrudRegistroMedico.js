@@ -105,6 +105,83 @@ async function Ejecutar(Metodo, Funcion) {
     }
 }
 
+
+
+const especialidadesPorRol = {
+    "Médico general": [
+        "Medicina General",
+        "Medicina Interna",
+        "Pediatría",
+        "Geriatría"
+    ],
+    "Médico quirúrgico": [
+        "Cirugía General",
+        "Neurocirugía",
+        "Cirugía Cardiotorácica",
+        "Cirugía Plástica y Reconstructiva",
+        "Traumatología y Ortopedia",
+        "Cirugía Pediátrica"
+    ],
+    "Médico enfocado en órganos o sistemas": [
+        "Cardiología",
+        "Neumología",
+        "Gastroenterología",
+        "Hematología",
+        "Endocrinología",
+        "Nefrología",
+        "Dermatología",
+        "Oftalmología",
+        "Otorrinolaringología",
+        "Urología"
+
+    ],
+    "Médico diagnóstico": [
+        "Radiología",
+        "Patología Clínica",
+        "Medicina Nuclear"
+    ],
+    "Médico relacionado con salud mental y comportamiento": [
+        "Psiquiatría",
+        "Psicología Clínica"
+    ],
+    "Médicina preventiva y social": [
+        "Epidemiología",
+        "Medicina del Trabajo",
+        "Salud Pública"
+
+    ],
+    "Médico especialista": [
+        "Oncología",
+        "Reumatología",
+        "Alergología e Inmunología Clínica",
+        "Anestesiología",
+        "Cuidados Intensivos",
+        "Medicina Deportiva",
+        "Medicina Familiar y Comunitaria",
+        "Toxicología"
+    ],
+};
+
+
+document.getElementById('txtrol').addEventListener('change', function () {
+    const rolSeleccionado = this.value; 
+    const especialidadSelect = document.getElementById('txtespecialidad'); 
+
+  
+    especialidadSelect.innerHTML = '<option value="0">-- Selecciona una Especialidad --</option>';
+
+    
+    if (especialidadesPorRol[rolSeleccionado]) {
+       
+        especialidadesPorRol[rolSeleccionado].forEach((especialidad) => {
+            const option = document.createElement('option');
+            option.value = especialidad;
+            option.textContent = especialidad;
+            especialidadSelect.appendChild(option);
+        });
+    }
+});
+
 class PERSONA {
     constructor(id_persona, nombre, apellido, fecha_nacimiento, direccion, telefono, email, genero, id_pais, password) {
         this.id_persona = id_persona;
@@ -120,4 +197,6 @@ class PERSONA {
 
 
     }
+
+
 }

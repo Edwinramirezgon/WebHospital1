@@ -49,6 +49,27 @@ async function Consultar() {
     }
 }
 
+function Editar(ID, PAIS, NOMBRES, APELLIDOS, FECHA_DE_NACIMIENTO, DIRECCION, TELEFONO, EMAIL, GENERO, CONTACTO_DE_EMERGENCIA, ALERGIAS, ANTECEDENTES ) {
+    $("#txtid_persona").val(ID);
+    $("#txtnombre").val(NOMBRES);
+    $("#txtapellido").val(APELLIDOS);
+    $("#txtfecha_nacimiento").val(FECHA_DE_NACIMIENTO.split('T')[0]);
+    $("#txtdireccion").val(DIRECCION);
+    $("#txttelefono").val(TELEFONO);
+    $("#txtemail").val(EMAIL);
+    $("#txtgenero").val(GENERO);
+    $("#cbopais").val(PAIS);
+    $("#txtalergias").val(ALERGIAS);
+    $("#txtantecedentes").val(ANTECEDENTES);
+    $("#txtcontacto").val(CONTACTO_DE_EMERGENCIA);
+}
+
+function Eliminar(ID) {
+    const personas = new PERSONA(ID, $("#txtnombre").val(), $("#txtapellido").val(), $("#txtfecha_nacimiento ").val(),
+        $("#txtdireccion").val(), $("#txttelefono").val(), $("#txtemail").val(), $("#txtgenero").val(), $("#cbopais").val());
+    let URL = "https://localhost:44389/api/RegistroPacientes/Eliminar?id_persona=" + ID;
+    EjecutarServicioAuth('DELETE', URL, personas);
+}
 async function Ejecutar(Metodo, Funcion) {
 
 

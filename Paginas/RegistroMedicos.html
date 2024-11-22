@@ -105,30 +105,56 @@
                                             </div>
                                         </div>
                                         <div class="row">
+
+
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="txtgenero">GENERO</label>
-                                                    <input type="text" class="form-control" id="txtgenero" placeholder="GENERO">
+                                                    <select class="form-control" id="txtgenero">
+                                                        <option value="0">-- Selecciona un Genero --</option>
+                                                        <option value="M">Masculino</option>
+                                                        <option value="F">Femenino</option>                                                        
+                                                    </select>
                                                 </div>
                                             </div>
+
+                                      
+
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="txtcontacto">CONTACTO_DE_EMERGENCIA</label>
                                                     <input type="text" class="form-control" id="txtcontacto" placeholder="CONTACTO_DE_EMERGENCIA">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="txtrol">ROL</label>
-                                                    <input type="text" class="form-control" id="txtrol" placeholder="ROL">
+                                                    <select class="form-control" id="txtrol">
+                                                        <option value="0">-- Selecciona un Rol --</option>
+                                                        <option value="Médico general">Médico general</option>
+                                                        <option value="Médico quirúrgico">Médico quirúrgico</option>
+                                                        <option value="Médico enfocado en órganos o sistemas">Médico enfocado en órganos o sistemas</option>
+                                                        <option value="Médico diagnóstico">Médico diagnóstico</option>
+                                                        <option value="Médico relacionado con salud mental y comportamiento">Médico relacionado con salud mental y comportamiento</option>
+                                                        <option value="Médicina preventiva y social">Médicina preventiva y social</option>
+                                                        <option value="Médico especialista">Médico especialista</option>
+
+                                                    </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="txtespecialidad">ESPECIALIDAD</label>
-                                                    <input type="text" class="form-control" id="txtespecialidad" placeholder="ESPECIALIDAD">
+                                                    <select class="form-control" id="txtespecialidad">
+                                                        <option value="0">-- Selecciona una Especialidad --</option>
+                                                    </select>
                                                 </div>
                                             </div>
+
+
+
                                         </div>
                                         <div class="row">
                                             <div class="col-md-3">
@@ -146,22 +172,30 @@
 
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="txthorario">HORARIO</label>
-                                                    <input type="text" class="form-control" id="txthorario" placeholder="HORARIO">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="cbopais">PAIS</label>
-                                                    <select class="form-control" id="cbopais">
-                                                        <option value=0>ESCOJA UN PAIS</option>
+                                                    <label for="txthorario">HORARIO:</label>
+                                                    <select class="form-control" id="txthorario">
+                                                        <option value="0">-- Selecciona un Horario --</option>
+                                                        <option value="00:00 Hasta las 11:59">00:00 Hasta las 11:59</option>
+                                                        <option value="06:00 Hasta las 17:59">06:00 Hasta las 17:59</option>
+                                                        <option value="12:00 Hasta las 23:59">12:00 Hasta las 23:59</option>
+                                                        <option value="18:00 Hasta las 05:59">18:00 Hasta las 05:59</option>
                                                     </select>
+
                                                 </div>
                                             </div>
 
+                                              
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="cbopais">PAIS</label>
+                                                        <select class="form-control" id="cbopais">
+                                                            <option value=0>ESCOJA UN PAIS</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
 
-                                        </div>
+
+                                            </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <br />
@@ -171,7 +205,7 @@
                                                     <br />
                                                     <button type="button" id="btnActualizar" class="btn-block btn-lg btn-primary" onclick="Ejecutar('PUT','Actualizar')">ACTUALIZAR</button>
                                                 </div>
-                                 
+
                                             </div>
                                         </div>
                                 </div>
@@ -215,6 +249,8 @@
             </div>
         </div>
     </section>
+
+
 
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <script src="../Scripts/bootstrap.bundle.min.js"></script>
