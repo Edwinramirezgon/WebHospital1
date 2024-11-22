@@ -19,6 +19,36 @@ async function EjecutarServicioAuth(Metodo, url, objeto) {
         $("#dvMensaje").html(error);
     }
 }
+
+async function EliminarAuth(Metodo, url) {
+    try {
+        let Token = getCookie("token");
+
+       
+        let opciones = {
+            method: Metodo,
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": 'Bearer ' + Token
+            }
+        };            
+
+        const Resultado = await fetch(url, opciones);
+
+        
+        if (!Resultado.ok) {
+            throw new Error(`Error ${Resultado.status}: ${Resultado.statusText}`);
+        }
+
+        const Respuesta = await Resultado.json();
+        $("#dvMensaje").html(Respuesta);
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+        $("#dvMensaje").html("Ocurrió un error: " + error.message);
+    }
+}
+
 async function EjecutarServicioRpta(Metodo, url, objeto) {
     try {
         // Extraer el token de las cookies
