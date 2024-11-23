@@ -7,6 +7,10 @@ function LlenarTabla() {
     const tabla = $('#tblPacientes').DataTable();
     tabla.clear().destroy();
     LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroPacientes/LlenarTabla", "#tblPacientes");
+    const tabla2 = $('#tblPacientes').DataTable();
+    tabla2.clear().destroy();
+    LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroPacientes/LlenarTabla", "#tblPacientes");
+
 }
 
 

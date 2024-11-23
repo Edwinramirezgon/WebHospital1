@@ -8,6 +8,9 @@ function LlenarTabla() {
     const tabla = $('#tblhabitacion').DataTable();
     tabla.clear().destroy();
     LlenarTablaXServiciosAuth("https://localhost:44389/api/Habitaciones/LlenarTabla", "#tblhabitacion");
+    const tabla2 = $('#tblhabitacion').DataTable();
+    tabla2.clear().destroy();
+    LlenarTablaXServiciosAuth("https://localhost:44389/api/Habitaciones/LlenarTabla", "#tblhabitacion");
 }
 
 
@@ -34,6 +37,7 @@ async function EjecutarModal(Metodo, Funcion) {
         $("#editEstadoHabitacion ").val(), $("#editDescripcion").val());
     let URL = "https://localhost:44389/api/Habitaciones/" + Funcion;
     EjecutarServicioAuth(Metodo, URL, habitaciones);
+    LlenarTabla();
 }
 
 function abrirModalEditar(id, numero, estado, descripcion, tipoId) {

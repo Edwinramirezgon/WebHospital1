@@ -10,6 +10,9 @@ function LlenarTabla() {
     const tabla = $('#tblMedicos').DataTable();
     tabla.clear().destroy();
     LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroMedicos/LlenarTabla", "#tblMedicos");
+    const tabla2 = $('#tblMedicos').DataTable();
+    tabla2.clear().destroy();
+    LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroMedicos/LlenarTabla", "#tblMedicos");
 }
 
 function abrirModalEditar(ID, PAIS, NOMBRES, APELLIDOS, FECHA_DE_NACIMIENTO, DIRECCION, TELEFONO, EMAIL, GENERO, TIPO_DE_USUARIO, ROL, ESPECIALIDAD, HORARIO, CONTACTO_DE_EMERGENCIA) {

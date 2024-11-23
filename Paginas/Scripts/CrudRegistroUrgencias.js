@@ -9,6 +9,9 @@ function LlenarTabla() {
     const tabla = $('#tblurgencias').DataTable();
     tabla.clear().destroy();
     LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroUrgencias/LlenarTabla", "#tblurgencias");
+    const tabla2 = $('#tblurgencias').DataTable();
+    tabla2.clear().destroy();
+    LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroUrgencias/LlenarTabla", "#tblurgencias");
 }
 
 
