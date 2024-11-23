@@ -173,14 +173,11 @@
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <br />
                                                 <button type="button" id="btnInsertar" class="btn-block btn-lg btn-success" onclick="Ejecutar('POST','Insertar')">INSERTAR</button>
                                             </div>
-                                            <div class="col-md-6">
-                                                <br />
-                                                <button type="button" id="btnActualizar" class="btn-block btn-lg btn-primary" onclick="Ejecutar('PUT','Actualizar')">ACTUALIZAR</button>
-                                            </div>
+
 
                                         </div>
                                     </div>
@@ -221,10 +218,138 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditarLabel">Editar Paciente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formEditar">
+                            <!-- Primera fila -->
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="edittxtid_persona">ID</label>
+                                    <input type="text" class="form-control" id="edittxtid_persona" placeholder="ID" disabled>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="edittxtnombre">NOMBRES</label>
+                                    <input type="text" class="form-control" id="edittxtnombre" placeholder="NOMBRES">
+                                </div>
+                            </div>
+
+                            <!-- Segunda fila -->
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="edittxtapellido">APELLIDOS</label>
+                                    <input type="text" class="form-control" id="edittxtapellido" placeholder="APELLIDOS">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="edittxtfecha_nacimiento">FECHA DE NACIMIENTO</label>
+                                    <input type="date" class="form-control" id="edittxtfecha_nacimiento">
+                                </div>
+                            </div>
+
+                            <!-- Tercera fila -->
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="edittxtdireccion">DIRECCIÓN</label>
+                                    <input type="text" class="form-control" id="edittxtdireccion" placeholder="DIRECCIÓN">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="edittxttelefono">TELÉFONO</label>
+                                    <input type="text" class="form-control" id="edittxttelefono" placeholder="TELÉFONO">
+                                </div>
+                            </div>
+
+                            <!-- Cuarta fila -->
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="edittxtemail">EMAIL</label>
+                                    <input type="text" class="form-control" id="edittxtemail" placeholder="EMAIL">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="edittxtgenero">GÉNERO</label>
+                                    <select class="form-control" id="edittxtgenero">
+                                        <option value="0">-- Selecciona un Género --</option>
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Femenino</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Quinta fila -->
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="edittxtcontacto">CONTACTO DE EMERGENCIA</label>
+                                    <input type="text" class="form-control" id="edittxtcontacto" placeholder="CONTACTO DE EMERGENCIA">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="editcbopais">PAÍS</label>
+                                    <select class="form-control" id="editcbopais">
+                                        <option value="0">ESCOJA UN PAÍS</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Sexta fila -->
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="edittxtalergias">ALERGIAS</label>
+                                    <select class="form-control" id="edittxtalergias" name="alergias">
+                                        <option value="0">-- Selecciona una Alergia --</option>
+                                        <option value="Ninguna">Ninguna</option>
+                                        <option value="Penicilina">Penicilina</option>
+                                        <option value="Mariscos">Mariscos</option>
+                                        <option value="Pescado">Pescado</option>
+                                        <option value="Lactosa">Lactosa</option>
+                                        <option value="Gluten">Gluten</option>
+                                        <option value="Frutos secos">Frutos secos</option>
+                                        <option value="Ácaros del polvo">Ácaros del polvo</option>
+                                        <option value="Polen">Polen</option>
+                                        <option value="Caspa de animales">Caspa de animales</option>
+                                        <option value="Aspirina">Aspirina</option>
+                                        <option value="Latex">Latex</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="edittxtantecedentes">ANTECEDENTES</label>
+                                    <select class="form-control" id="edittxtantecedentes" name="antecedentes">
+                                        <option value="0">-- Selecciona un Antecedente --</option>
+                                        <option value="Ninguno">Ninguno</option>
+                                        <option value="Hipertensión">Hipertensión</option>
+                                        <option value="Diabetes">Diabetes</option>
+                                        <option value="Enfermedad cardiovascular">Enfermedad cardiovascular</option>
+                                        <option value="Asma">Asma</option>
+                                        <option value="Cáncer">Cáncer</option>
+                                        <option value="Enfermedades renales">Enfermedades renales</option>
+                                        <option value="Accidente cerebrovascular (ACV)">Accidente cerebrovascular (ACV)</option>
+                                        <option value="Alergias graves">Alergias graves</option>
+                                        <option value="Enfermedades autoinmunes">Enfermedades autoinmunes</option>
+                                        <option value="Trastornos psiquiátricos">Trastornos psiquiátricos</option>
+                                        <option value="Enfermedades respiratorias crónicas">Enfermedades respiratorias crónicas</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-md-6">
+                            <button type="button" id="btnActualizar" class="btn-block btn-lg btn-primary" data-dismiss="modal" onclick="EjecutarModal('PUT','Actualizar')">ACTUALIZAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </section>
 
-    <script src="../Scripts/jquery-3.4.1.min.js"></script>
-    <script src="../Scripts/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/jquery.dataTables.min.js"></script>
     <script src="Scripts/Comunes/CRUD.js"></script>
     <script src="Scripts/CrudRegistroPacientes.js"></script>

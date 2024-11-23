@@ -1,78 +1,37 @@
 ﻿jQuery(function () {
     LlenarComboXServiciosAuth("https://localhost:44389/api/RegistroMedicos/LlenarCombo", "#cbopais");
+    LlenarComboXServiciosAuth("https://localhost:44389/api/RegistroMedicos/LlenarCombo", "#editcbopais");
+
 
     LlenarTabla();
 });
 function LlenarTabla() {
+
+    const tabla = $('#tblMedicos').DataTable();
+    tabla.clear().destroy();
     LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroMedicos/LlenarTabla", "#tblMedicos");
 }
 
-async function Consultar() {
-    let id_persona = $("#txtid_persona").val();
-    URL = "https://localhost:44389/api/RegistroMedicos/ConsultarXID?id=" + id_persona;
-    const persona = await ConsultarServicioAuth(URL);
-    if (persona != null) {
-        $("#txtnombre").val(persona.nombre);
-        $("#txtapellido").val(persona.apellido);
-        $("#txtfecha_nacimiento").val(persona.fecha_nacimiento.split('T')[0]);
-        $("#txtdireccion").val(persona.direccion);
-        $("#txttelefono").val(persona.telefono);
-        $("#txtemail").val(persona.email);
-        $("#txtgenero").val(persona.genero);
-        $("#cbopais").val(persona.id_pais);
-        URL2 = "https://localhost:44389/api/RegistroMedicos/ConsultarXIDp?id=" + id_persona;
-        const usuario = await ConsultarServicioAuth(URL2);
-        $("#txttipo").val(usuario.usuario1);
-        $("#txtrol").val(usuario.rol);
-        URL3 = "https://localhost:44389/api/Medicos/ConsultarXID?id=" + usuario.id_usuario;
-        const medico = await ConsultarServicioAuth(URL3);
-        $("#txtespecialidad").val(medico.especialidad);
-        $("#txthorario").val(medico.horario);
-        $("#txtcontacto").val(medico.telefono_contacto);
-        $("#dvMensaje").html("");
+function abrirModalEditar(ID, PAIS, NOMBRES, APELLIDOS, FECHA_DE_NACIMIENTO, DIRECCION, TELEFONO, EMAIL, GENERO, TIPO_DE_USUARIO, ROL, ESPECIALIDAD, HORARIO, CONTACTO_DE_EMERGENCIA) {
+    $("#edittxtid_persona").val(ID);
+    $("#edittxtnombre").val(NOMBRES);
+    $("#edittxtapellido").val(APELLIDOS);
+    $("#edittxtfecha_nacimiento").val(FECHA_DE_NACIMIENTO.split('T')[0]);
+    $("#edittxtdireccion").val(DIRECCION);
+    $("#edittxttelefono").val(TELEFONO);
+    $("#edittxtemail").val(EMAIL);
+    $("#edittxtgenero").val(GENERO);
+    $("#editcbopais").val(PAIS);
+    $("#edittxttipo").val(TIPO_DE_USUARIO);
+    $("#edittxtrol").val(ROL);
+    $("#edittxtespecialidad").val(ESPECIALIDAD);
+    $("#edittxthorario").val(HORARIO);
+    $("#edittxtcontacto").val(CONTACTO_DE_EMERGENCIA);
 
-
-
-    }
-    else {
-
-        $("#dvMensaje").html("El medico no existe en la base de datos");
-        $("#txtnombre").val("");
-        $("#txtapellido").val("");
-        $("#txtfecha_nacimiento").val("");
-        $("#txtdireccion").val("");
-        $("#txttelefono").val("");
-        $("#txtemail").val("");
-        $("#txtgenero").val("");
-        $("#txttipo").val("");
-        $("#txtrol").val("");
-        $("#txtespecialidad").val("");
-        $("#txthorario").val("");
-        $("#txtpassword").val("");
-        $("#txtConfirmPassword").val("");
-        $("#txtcontacto").val("");
-        $("#cbopais").val("");
-
-    }
+    $('#modalEditar').modal('show');
 }
 
 
-function Editar(ID, PAIS, NOMBRES, APELLIDOS, FECHA_DE_NACIMIENTO, DIRECCION, TELEFONO, EMAIL, GENERO, TIPO_DE_USUARIO, ROL, ESPECIALIDAD, HORARIO,CONTACTO_DE_EMERGENCIA) {
-    $("#txtid_persona").val(ID);
-    $("#txtnombre").val(NOMBRES);
-    $("#txtapellido").val(APELLIDOS);
-    $("#txtfecha_nacimiento").val(FECHA_DE_NACIMIENTO.split('T')[0]);
-    $("#txtdireccion").val(DIRECCION);
-    $("#txttelefono").val(TELEFONO);
-    $("#txtemail").val(EMAIL);
-    $("#txtgenero").val(GENERO);
-    $("#cbopais").val(PAIS);  
-    $("#txttipo").val(TIPO_DE_USUARIO);
-    $("#txtrol").val(ROL);    
-    $("#txtespecialidad").val(ESPECIALIDAD);
-    $("#txthorario").val(HORARIO);
-    $("#txtcontacto").val(CONTACTO_DE_EMERGENCIA);
-}
 
 function Eliminar(ID) {
     const personas = new PERSONA(ID, $("#txtnombre").val(), $("#txtapellido").val(), $("#txtfecha_nacimiento ").val(),
@@ -105,6 +64,29 @@ async function Ejecutar(Metodo, Funcion) {
     }
 }
 
+async function EjecutarModal(Metodo, Funcion) {
+
+
+    let id_persona = $("#edittxtid_persona").val();
+    let usuario1 = $("#edittxttipo").val();
+    let rol = $("#edittxtrol").val();
+    let especialidad = $("#edittxtespecialidad").val();
+    let horario = $("#edittxthorario").val();
+    let contacto = $("#edittxtcontacto").val();
+    let password = $("#edittxtpassword").val();
+    let confirmpassword = $("#edittxtConfirmPassword").val();
+    if (password != confirmpassword) {
+        $("#dvMensaje").html("Las contraseñas no coinciden");
+        return;
+    } else if (password == confirmpassword) {
+        const personas = new PERSONA($("#edittxtid_persona").val(), $("#edittxtnombre").val(), $("#edittxtapellido").val(), $("#edittxtfecha_nacimiento ").val(),
+            $("#edittxtdireccion").val(), $("#edittxttelefono").val(), $("#edittxtemail").val(), $("#edittxtgenero").val(), $("#editcbopais").val(), $("#edittxtpassword").val());
+        let URL = "https://localhost:44389/api/RegistroMedicos/" + Funcion + "?id_persona=" + id_persona + "&usuario1=" + usuario1 + "&rol=" + rol + "&especialidad=" + especialidad
+            + "&horario=" + horario + "&contacto=" + contacto + "&password=" + password;
+        EjecutarServicioAuth(Metodo, URL, personas);
+        LlenarTabla();
+    }
+}
 
 
 const especialidadesPorRol = {
@@ -173,6 +155,25 @@ document.getElementById('txtrol').addEventListener('change', function () {
     
     if (especialidadesPorRol[rolSeleccionado]) {
        
+        especialidadesPorRol[rolSeleccionado].forEach((especialidad) => {
+            const option = document.createElement('option');
+            option.value = especialidad;
+            option.textContent = especialidad;
+            especialidadSelect.appendChild(option);
+        });
+    }
+});
+
+document.getElementById('edittxtrol').addEventListener('change', function () {
+    const rolSeleccionado = this.value;
+    const especialidadSelect = document.getElementById('edittxtespecialidad');
+
+
+    especialidadSelect.innerHTML = '<option value="0">-- Selecciona una Especialidad --</option>';
+
+
+    if (especialidadesPorRol[rolSeleccionado]) {
+
         especialidadesPorRol[rolSeleccionado].forEach((especialidad) => {
             const option = document.createElement('option');
             option.value = especialidad;

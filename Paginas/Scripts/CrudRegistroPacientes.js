@@ -1,68 +1,33 @@
 ﻿jQuery(function () {  
     LlenarComboXServiciosAuth("https://localhost:44389/api/RegistroPacientes/LlenarCombo", "#cbopais");
+    LlenarComboXServiciosAuth("https://localhost:44389/api/RegistroPacientes/LlenarCombo", "#editcbopais");
     LlenarTabla();
 });
 function LlenarTabla() {
+    const tabla = $('#tblPacientes').DataTable();
+    tabla.clear().destroy();
     LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroPacientes/LlenarTabla", "#tblPacientes");
 }
 
 
-async function Consultar() {
-    let id_persona = $("#txtid_persona").val();
-    URL = "https://localhost:44389/api/RegistroPacientes/ConsultarXID?id=" + id_persona;
-    const persona = await ConsultarServicioAuth(URL);
-    if (persona != null) {
-        $("#txtnombre").val(persona.nombre);
-        $("#txtapellido").val(persona.apellido);
-        $("#txtfecha_nacimiento").val(persona.fecha_nacimiento.split('T')[0]);
-        $("#txtdireccion").val(persona.direccion);
-        $("#txttelefono").val(persona.telefono);
-        $("#txtemail").val(persona.email);
-        $("#txtgenero").val(persona.genero);
-        $("#cbopais").val(persona.id_pais);
-        URL2 = "https://localhost:44389/api/RegistroPacientes/ConsultarXIDp?id=" + id_persona;
-        const paciente = await ConsultarServicioAuth(URL2);
-       $("#txtcontacto").val(paciente.contacto_emergencia);
-       $("#txtalergias").val(paciente.alergias);
-        $("#txtantecedentes").val(paciente.antecedentes_medicos);  
-        $("#dvMensaje").html("");
-      
+function abrirModalEditar(ID, PAIS, NOMBRES, APELLIDOS, FECHA_DE_NACIMIENTO, DIRECCION, TELEFONO, EMAIL, GENERO, CONTACTO_DE_EMERGENCIA, ALERGIAS, ANTECEDENTES) {
+    $("#edittxtid_persona").val(ID);
+    $("#edittxtnombre").val(NOMBRES);
+    $("#edittxtapellido").val(APELLIDOS);
+    $("#edittxtfecha_nacimiento").val(FECHA_DE_NACIMIENTO.split('T')[0]);
+    $("#edittxtdireccion").val(DIRECCION);
+    $("#edittxttelefono").val(TELEFONO);
+    $("#edittxtemail").val(EMAIL);
+    $("#edittxtgenero").val(GENERO);
+    $("#editcbopais").val(PAIS);
+    $("#edittxtalergias").val(ALERGIAS);
+    $("#edittxtantecedentes").val(ANTECEDENTES);
+    $("#edittxtcontacto").val(CONTACTO_DE_EMERGENCIA);
 
-
-    }
-    else {
-
-        $("#dvMensaje").html("El paciente no existe en la base de datos");
-        $("#txtnombre").val("");
-        $("#txtapellido").val("");
-        $("#txtfecha_nacimiento").val("");
-        $("#txtdireccion").val("");
-        $("#txttelefono").val("");
-        $("#txtemail").val("");
-        $("#txtgenero").val("");
-        $("#txtcontacto").val("");
-        $("#txtalergias").val("");
-        $("#txtantecedentes").val("");
-        $("#cbopais").val("");
-
-
-    }
+    $('#modalEditar').modal('show');
 }
 
-function Editar(ID, PAIS, NOMBRES, APELLIDOS, FECHA_DE_NACIMIENTO, DIRECCION, TELEFONO, EMAIL, GENERO, CONTACTO_DE_EMERGENCIA, ALERGIAS, ANTECEDENTES ) {
-    $("#txtid_persona").val(ID);
-    $("#txtnombre").val(NOMBRES);
-    $("#txtapellido").val(APELLIDOS);
-    $("#txtfecha_nacimiento").val(FECHA_DE_NACIMIENTO.split('T')[0]);
-    $("#txtdireccion").val(DIRECCION);
-    $("#txttelefono").val(TELEFONO);
-    $("#txtemail").val(EMAIL);
-    $("#txtgenero").val(GENERO);
-    $("#cbopais").val(PAIS);
-    $("#txtalergias").val(ALERGIAS);
-    $("#txtantecedentes").val(ANTECEDENTES);
-    $("#txtcontacto").val(CONTACTO_DE_EMERGENCIA);
-}
+
 
 function Eliminar(ID) {
     const personas = new PERSONA(ID, $("#txtnombre").val(), $("#txtapellido").val(), $("#txtfecha_nacimiento ").val(),
@@ -81,6 +46,21 @@ async function Ejecutar(Metodo, Funcion) {
     const personas = new PERSONA($("#txtid_persona").val(), $("#txtnombre").val(), $("#txtapellido").val(), $("#txtfecha_nacimiento ").val(),
         $("#txtdireccion").val(), $("#txttelefono").val(), $("#txtemail").val(), $("#txtgenero").val(), $("#cbopais").val());
     let URL = "https://localhost:44389/api/RegistroPacientes/" + Funcion + "?idpersona=" + idpersona + "&contacto=" + contacto + "&alergias=" + alergias +  "&antecedentes=" + antecedentes;
+    EjecutarServicioAuth(Metodo, URL, personas);
+    LlenarTabla();
+}
+
+async function EjecutarModal(Metodo, Funcion) {
+
+
+    let idpersona = $("#edittxtid_persona").val();
+    let contacto = $("#edittxtcontacto").val();
+    let alergias = $("#edittxtalergias").val();
+    let antecedentes = $("#edittxtantecedentes").val();
+
+    const personas = new PERSONA($("#edittxtid_persona").val(), $("#edittxtnombre").val(), $("#edittxtapellido").val(), $("#edittxtfecha_nacimiento ").val(),
+        $("#edittxtdireccion").val(), $("#edittxttelefono").val(), $("#edittxtemail").val(), $("#edittxtgenero").val(), $("#editcbopais").val());
+    let URL = "https://localhost:44389/api/RegistroPacientes/" + Funcion + "?idpersona=" + idpersona + "&contacto=" + contacto + "&alergias=" + alergias + "&antecedentes=" + antecedentes;
     EjecutarServicioAuth(Metodo, URL, personas);
     LlenarTabla();
 }

@@ -1,51 +1,46 @@
 ﻿jQuery(function () {
     LlenarComboXServiciosAuth("https://localhost:44389/api/RegistroUrgencias/LlenarCombo", "#cbopacientes");
     LlenarComboXServiciosAuth("https://localhost:44389/api/RegistroUrgencias/LlenarCombo2", "#cbomedicos");
+    LlenarComboXServiciosAuth("https://localhost:44389/api/RegistroUrgencias/LlenarCombo", "#editcbopacientes");
+    LlenarComboXServiciosAuth("https://localhost:44389/api/RegistroUrgencias/LlenarCombo2", "#editcbomedicos");
     LlenarTabla();
 });
 function LlenarTabla() {
+    const tabla = $('#tblurgencias').DataTable();
+    tabla.clear().destroy();
     LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroUrgencias/LlenarTabla", "#tblurgencias");
 }
 
 
-async function Consultar() {
-    let id_urgencia = $("#txtid").val();
-    URL = "https://localhost:44389/api/RegistroUrgencias/ConsultarXID?id=" + id_urgencia;
-    const urgencia = await ConsultarServicioAuth(URL);
-    if (urgencia != null) {
-        $("#cbopacientes").val(urgencia.id_paciente);
-        $("#cbomedicos").val(urgencia.id_medico);
-        $("#txtfecha_evento").val(urgencia.fecha_evento.split('T')[0]);
-        $("#txtdescripcion").val(urgencia.descripcion);
-        URL2 = "https://localhost:44389/api/RegistroUrgencias/ConsultarXID2?id=" + id_urgencia
-        const urg = await ConsultarServicioAuth(URL2);
-        $("#txtestado").val(urg.estado_urgencia);       
-        $("#dvMensaje").html("");
+
+async function EjecutarModal(Metodo, Funcion) {
 
 
+    let estado_urgencia = $("#edittxtestado").val(); 
+    let id_urgencia = $("#edittxtid").val();
+  
 
-    }
-    else {
+    const urgencia = new EventoMedico($("#edittxtid").val(), $("#editcbopacientes").val(), $("#editcbomedicos").val(), $("#edittxtfecha_evento ").val(),
+        $("#edittxtdescripcion").val());
+    let URL = "https://localhost:44389/api/RegistroUrgencias/" + Funcion + "?estado_urgencia=" + estado_urgencia;
+    EjecutarServicioAuth(Metodo, URL, urgencia);
+    LlenarTabla();
 
-        $("#dvMensaje").html("El paciente no existe en la base de datos");
-        $("#cbopacientes").val("");
-        $("#cbomedicos").val("");
-        $("#txtfecha_evento").val("");
-        $("#txtdescripcion").val("");
-        $("#txtestado").val("");     
-
-
-    }
 }
-function Editar(ID, ID_PACIENTE, ID_MEDICO, FECHA_DE_URGENCIA, DESCRIPCION_DE_URGENCIA, ESTADO_DE_URGENCIA) {
-    $("#txtid").val(ID);
-    $("#cbopacientes").val(ID_PACIENTE);
-    $("#cbomedicos").val(ID_MEDICO);
-    $("#txtfecha_evento").val(FECHA_DE_URGENCIA.split('T')[0]);
-    $("#txtdescripcion").val(DESCRIPCION_DE_URGENCIA); 
-    $("#txtestado").val(ESTADO_DE_URGENCIA);
+
+function abrirModalEditar(ID, ID_PACIENTE, ID_MEDICO, FECHA_DE_URGENCIA, DESCRIPCION_DE_URGENCIA, ESTADO_DE_URGENCIA) {
+    $("#edittxtid").val(ID);
+    $("#editcbopacientes").val(ID_PACIENTE);
+    $("#editcbomedicos").val(ID_MEDICO);
+    $("#edittxtfecha_evento").val(FECHA_DE_URGENCIA.split('T')[0]);
+    $("#edittxtdescripcion").val(DESCRIPCION_DE_URGENCIA);
+    $("#edittxtestado").val(ESTADO_DE_URGENCIA);
     $("#dvMensaje").html("");
+
+    $('#modalEditar').modal('show');
 }
+
+
 
 function Eliminar(ID) {
     const urgencia = new EventoMedico(ID, $("#cbopacientes").val(), $("#cbomedicos").val(), $("#txtfecha_evento ").val(),

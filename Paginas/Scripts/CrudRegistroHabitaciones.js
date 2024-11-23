@@ -1,10 +1,22 @@
 ﻿jQuery(function () {
     LlenarComboXServiciosAuth("https://localhost:44389/api/Habitaciones/LlenarCombo", "#cbohabitacion");
+    LlenarComboXServiciosAuth("https://localhost:44389/api/Habitaciones/LlenarCombo", "#editTipoHabitacion");
     LlenarTabla();
 });
 function LlenarTabla() {
+
+    const tabla = $('#tblhabitacion').DataTable();
+    tabla.clear().destroy();
     LlenarTablaXServiciosAuth("https://localhost:44389/api/Habitaciones/LlenarTabla", "#tblhabitacion");
 }
+
+
+function Eliminar(ID) {
+    const habitaciones = new Habitacion(ID, "", "", "", "");
+    let URL = "https://localhost:44389/api/Habitaciones/Eliminar?id_habitacion=" + ID;
+    EjecutarServicioAuth('DELETE', URL, habitaciones);
+}
+
 
 
 async function Ejecutar(Metodo, Funcion) {
@@ -14,26 +26,24 @@ async function Ejecutar(Metodo, Funcion) {
     let URL = "https://localhost:44389/api/Habitaciones/" + Funcion;
     EjecutarServicioAuth(Metodo, URL, habitaciones);
 }
-async function Consultar() {
-    let id_habitacion = $("#txtid_habitacion").val();
-    URL = "https://localhost:44389/api/Habitaciones/ConsultarXID?id=" + id_habitacion;
-    const habitacion = await ConsultarServicioAuth(URL);
-    if (habitacion != null) {
-        $("#txtnumero_habitacion").val(habitacion.numero_habitacion);
-        $("#cbohabitacion").val(habitacion.id_tipo_habitacion);
-        $("#txtestado_habitacion").val(habitacion.estado_habitacion);
-        $("#txtdescripcion").val(habitacion.descripcion);
-        $("#dvMensaje").html("");
 
-    }
-    else {
 
-        $("#dvMensaje").html("La habitacion no existe en la base de datos");
-        $("#txtnumero_habitacion").val("");
-        $("#cbohabitacion").val("");
-        $("#txtestado_habitacion").val("");
-        $("#txtdescripcion").val("");
-    }
+async function EjecutarModal(Metodo, Funcion) {
+
+    const habitaciones = new Habitacion($("#editIdHabitacion").val(), $("#editNumeroHabitacion").val(), $("#editTipoHabitacion").val(),
+        $("#editEstadoHabitacion ").val(), $("#editDescripcion").val());
+    let URL = "https://localhost:44389/api/Habitaciones/" + Funcion;
+    EjecutarServicioAuth(Metodo, URL, habitaciones);
+}
+
+function abrirModalEditar(id, numero, estado, descripcion, tipoId) {
+    $('#editIdHabitacion').val(id);
+    $('#editNumeroHabitacion').val(numero);
+    $('#editEstadoHabitacion').val(estado);
+    $('#editDescripcion').val(descripcion);
+    $('#editTipoHabitacion').val(tipoId);
+
+    $('#modalEditar').modal('show');
 }
 
 class Habitacion {
