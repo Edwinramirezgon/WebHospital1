@@ -118,7 +118,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="txtid_formula">FORMULA</label>
-                                        <input type="text" class="form-control" id="txtid_formula" placeholder="NÚMERO DE FORMULA">
+                                        <input type="text" class="form-control" id="txtid_formula" placeholder="NÚMERO DE FORMULA" disabled>
                                     </div>
 
                                     <div class="form-group">
@@ -135,6 +135,14 @@
                                         <label for="edittxtDocumento">DOCUMENTO DEL PACIENTE</label>
                                         <input type="text" class="form-control" id="edittxtDocumento" placeholder="DOCUMENTO PACIENTE" disabled>
                                     </div>
+
+                                                                  
+                                        <input type="text" class="form-control" id="edittxtDocumentoM" placeholder="DOCUMENTO MEDICO" hidden>                             
+
+                              
+                                 
+                                        <input type="text" class="form-control" id="edittxtDocumento2" placeholder="DOCUMENTO MEDICO" hidden>
+                                   
 
                                     <div class="form-group">
                                         <label for="txtNombrePaciente">NOMBRE DEL PACIENTE</label>
@@ -155,6 +163,11 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="txtDosis">DOSIS</label>
+                                        <input type="text" class="form-control" id="txtDosis" placeholder="DOSIS">
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="edittxtnombremedico">NOMBRE DEL MEDICO ENCARGADO</label>
                                         <input type="text" class="form-control" id="edittxtnombremedico" placeholder="NOMBRE DEL MEDICO ENCARGADO" disabled>
                                     </div>
@@ -168,8 +181,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="txtDosis">INDICACIONES</label>
-                                        <textarea class="form-control" id="txtDosis" placeholder="INDICACIONES" rows="5"></textarea>
+                                        <label for="txtindicaciones">INDICACIONES</label>
+                                        <textarea class="form-control" id="txtindicaciones" placeholder="INDICACIONES" rows="5"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -184,16 +197,36 @@
                     <div class="modal-footer">
                         <div class="row w-100">
                             <div class="col-md-6">
-                                <button type="button" id="btnGrabarMedicamento" class="btn btn-block btn-lg btn-success" onclick="GrabarMedicamento()">GRABAR MEDICAMENTO</button>
+                                <button type="button" id="btnGrabarMedicamento" class="btn btn-block btn-lg btn-success" onclick="GrabarMedicamento()">AGREGAR MEDICAMENTO</button>
                             </div>
                             <div class="col-md-6">
-                                <button type="button" id="btnGrabarFormula" class="btn btn-block btn-lg btn-success" onclick="GrabarFormula()">GRABAR FORMULA</button>
+                                <button type="button" id="btnGrabarFormula" class="btn btn-block btn-lg btn-success" onclick="Ejecutar('POST','Insertar')">GRABAR FORMULA</button>
+                            </div>
+                        </div>
+                        <div class="row w-100">
+                            <div class="col-md-12">
+                                <table id="tblmedicamentos" class="table table-bordered table-striped" style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>NOMBRE</th>
+                                            <th>DESCRIPCION</th>
+                                            <th>DOSIS</th>
+                                            <th>CANTIDAD</th>
+
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <div id="dvMensajemodal" class=""></div>
+                    </div>
+                </div>
                 </div>
             </div>
-        </div>
+        
     </section>
 
 

@@ -86,6 +86,8 @@ async function EjecutarServicioRptaAuth(Metodo, url, objeto) {
     }
 }
 
+
+
 async function ConsultarServicioAuth(url) {
     //Para invocar el servicio, vamos a utilizar el método fetch de javascript, que permite un servicio en una url con unos parámetros definidos
     try {
@@ -135,6 +137,38 @@ async function LlenarComboXServiciosAuth(URLServicio, ComboLlenar) {
         $("#dvMensaje").html(error);
     }
 }
+
+
+async function LlenarComboXServiciosAuth2(URLServicio, ComboLlenar) {
+    //Debe ir a la base de datos y llenar la información del combo de tipo producto
+    //Invocamos el servicio a través del fetch, usando el método fetch de javascript
+    try {
+        let Token = getCookie("token");
+        const Respuesta = await fetch(URLServicio,
+            {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": 'Bearer ' + Token
+                }
+            });
+        const Rpta = await Respuesta.json();
+        //Se debe limpiar el combo
+        $(ComboLlenar).empty();
+        //Se recorre en un ciclo para llenar el select con la información
+        for (i = 0; i < Rpta.length; i++) {
+            $(ComboLlenar).append(
+                '<option value="' + Rpta[i].Codigo + '" data-descripcion="' + Rpta[i].Descripcion + '">' + Rpta[i].Nombre + '</option>'
+            );
+        }
+    }
+    catch (error) {
+        //Se presenta la respuesta en el div mensaje
+        $("#dvMensaje").html(error);
+    }
+}
+
 
 async function LlenarTablaXServiciosAuth(URLServicio, TablaLlenar) {
     //Invocamos el servicio a través del fetch, usando el método fetch de javascript
