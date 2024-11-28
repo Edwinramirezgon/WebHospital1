@@ -3,12 +3,10 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
                     CRUD BASICO
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -27,9 +25,6 @@
                     <a class="dropdown-item" href="CrudPersona.html">CRUD PERSONAS</a>
                     <a class="dropdown-item" href="CrudUrgencia.html">CRUD URGENCIAS</a>
                     <a class="dropdown-item" href="CrudUsuario.html">CRUD USUARIOS</a>
-
-
-
                 </div>
             </li>
             <li class="nav-item active">
@@ -47,8 +42,26 @@
             <li class="nav-item active">
                 <a class="nav-link" href="AsignacionFormulas.html">REGISTRO FORMULAS <span class="sr-only">(current)</span></a>
             </li>
-
-
         </ul>
+      
+        <div class="navbar-nav ml-auto">
+            <span class="nav-item nav-link" id="userProfileName" style="color: black; font-size: 1.25rem; font-weight: bold;">
+            </span>
+        </div>
     </div>
 </nav>
+
+<script>
+ 
+    (function () {     
+           
+            const perfil = getCookie("Perfil");        
+
+            const userProfileElement = document.getElementById("userProfileName");
+      
+          
+                userProfileElement.textContent = "Bienvenido, " + perfil;
+      
+          
+    })();
+</script>

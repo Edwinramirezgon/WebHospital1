@@ -1,21 +1,4 @@
-﻿<script>
-    function verificarAutenticacion() {
-        const cookies = document.cookie.split(';').reduce((acc, cookie) => {
-            const [key, value] = cookie.trim().split('=');
-            acc[key] = value;
-            return acc;
-        }, {});
-
-        const token = cookies.token;
-
-        if (!token || token === '0') {
-            alert('Debes iniciar sesión para acceder a esta página.');
-            window.location.href = 'login.html';
-        }
-    }
-
-    verificarAutenticacion();
-</script>
+﻿
 
 
 <!DOCTYPE html>
@@ -47,6 +30,11 @@
                         </div>
                         <form id="frmIncapacidades">
                             <div class="card-body">
+                                <script>
+                                 document.body.style.display = 'none';
+                                document.addEventListener('DOMContentLoaded', () => {
+        verificarAutenticacion();
+    });</script>
                                 <div class="card card-gray-dark">
                                     <div class="card-header">
                                         <h3 class="card-title">DATOS</h3>
@@ -71,12 +59,20 @@
                                                     <input type="text" class="form-control" id="txtapellido" placeholder="APELLIDOS">
                                                 </div>
                                             </div>
+
+
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="txttipo">TIPO DE USUARIO</label>
-                                                    <input type="text" class="form-control" id="txttipo" placeholder="TIPO DE USUARIO">
+                                                    <select class="form-control" id="txttipo">
+                                                        <option value="0">-- Selecciona un Tipo de Usuario --</option>
+                                                        <option value="Administrador">Administrador</option>
+                                                        <option value="Medico">Medico</option>
+                                                    </select>
                                                 </div>
                                             </div>
+
+
                                         </div>
                                         <div class="row">
                                             <div class="col-md-3">
@@ -201,7 +197,7 @@
                                                 <br />
                                                 <button type="button" id="btnInsertar" class="btn-block btn-lg btn-success" onclick="Ejecutar('POST','Insertar')">INSERTAR</button>
                                             </div>
-                                           
+
 
                                         </div>
                                     </div>
@@ -272,112 +268,121 @@
                                     <label for="edittxtapellido">APELLIDOS</label>
                                     <input type="text" class="form-control" id="edittxtapellido" placeholder="APELLIDOS">
                                 </div>
+
+
+
                                 <div class="form-group col-md-6">
                                     <label for="edittxttipo">TIPO DE USUARIO</label>
-                                    <input type="text" class="form-control" id="edittxttipo" placeholder="TIPO DE USUARIO">
-                                </div>
-                            </div>
-
-                            <!-- Segunda fila -->
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtfecha_nacimiento">FECHA DE NACIMIENTO</label>
-                                    <input type="date" class="form-control" id="edittxtfecha_nacimiento">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtdireccion">DIRECCIÓN</label>
-                                    <input type="text" class="form-control" id="edittxtdireccion" placeholder="DIRECCIÓN">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="edittxttelefono">TELÉFONO</label>
-                                    <input type="text" class="form-control" id="edittxttelefono" placeholder="TELÉFONO">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtemail">EMAIL</label>
-                                    <input type="text" class="form-control" id="edittxtemail" placeholder="EMAIL">
-                                </div>
-                            </div>
-
-                            <!-- Tercera fila -->
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtgenero">GÉNERO</label>
-                                    <select class="form-control" id="edittxtgenero">
-                                        <option value="0">-- Selecciona un Género --</option>
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtcontacto">CONTACTO DE EMERGENCIA</label>
-                                    <input type="text" class="form-control" id="edittxtcontacto" placeholder="CONTACTO DE EMERGENCIA">
-                                </div>
-                            </div>
-
-                            <!-- Cuarta fila -->
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtrol">ROL</label>
-                                    <select class="form-control" id="edittxtrol">
-                                        <option value="0">-- Selecciona un Rol --</option>
-                                        <option value="Médico general">Médico general</option>
-                                        <option value="Médico quirúrgico">Médico quirúrgico</option>
-                                        <option value="Médico enfocado en órganos o sistemas">Médico enfocado en órganos o sistemas</option>
-                                        <option value="Médico diagnóstico">Médico diagnóstico</option>
-                                        <option value="Médico relacionado con salud mental y comportamiento">Médico relacionado con salud mental y comportamiento</option>
-                                        <option value="Medicina preventiva y social">Medicina preventiva y social</option>
-                                        <option value="Médico especialista">Médico especialista</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtespecialidad">ESPECIALIDAD</label>
-                                    <select class="form-control" id="edittxtespecialidad">
-                                        <option value="0">-- Selecciona una Especialidad --</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Quinto fila -->
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtpassword">Contraseña</label>
-                                    <input type="password" class="form-control" id="edittxtpassword" placeholder="Contraseña">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtConfirmPassword">Confirmar Contraseña</label>
-                                    <input type="password" class="form-control" id="edittxtConfirmPassword" placeholder="Confirmar Contraseña">
-                                </div>
-                            </div>
-
-                            <div class="row">
-
-                                <div class="form-group col-md-6">
-                                    <label for="edittxthorario">HORARIO:</label>
-                                    <select class="form-control" id="edittxthorario">
-                                        <option value="0">-- Selecciona un Horario --</option>
-                                        <option value="00:00 Hasta las 11:59">00:00 Hasta las 11:59</option>
-                                        <option value="06:00 Hasta las 17:59">06:00 Hasta las 17:59</option>
-                                        <option value="12:00 Hasta las 23:59">12:00 Hasta las 23:59</option>
-                                        <option value="18:00 Hasta las 05:59">18:00 Hasta las 05:59</option>
+                                    <select class="form-control" id="edittxttipo">
+                                        <option value="0">-- Selecciona un Tipo de Usuario --</option>
+                                        <option value="Administrador">Administrador</option>
+                                        <option value="Medico">Medico</option>
                                     </select>
                                 </div>
 
-                               
-                                <div class="form-group col-md-6">
-                                    <label for="editcbopais">PAIS</label>
-                                    <select class="form-control" id="editcbopais">
-                                        <option value=0>ESCOJA UN PAIS</option>
-                                    </select>
+
+
+
+                                <!-- Segunda fila -->
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="edittxtfecha_nacimiento">FECHA DE NACIMIENTO</label>
+                                        <input type="date" class="form-control" id="edittxtfecha_nacimiento">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="edittxtdireccion">DIRECCIÓN</label>
+                                        <input type="text" class="form-control" id="edittxtdireccion" placeholder="DIRECCIÓN">
+                                    </div>
                                 </div>
-                             
-                            </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="edittxttelefono">TELÉFONO</label>
+                                        <input type="text" class="form-control" id="edittxttelefono" placeholder="TELÉFONO">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="edittxtemail">EMAIL</label>
+                                        <input type="text" class="form-control" id="edittxtemail" placeholder="EMAIL">
+                                    </div>
+                                </div>
+
+                                <!-- Tercera fila -->
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="edittxtgenero">GÉNERO</label>
+                                        <select class="form-control" id="edittxtgenero">
+                                            <option value="0">-- Selecciona un Género --</option>
+                                            <option value="M">Masculino</option>
+                                            <option value="F">Femenino</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="edittxtcontacto">CONTACTO DE EMERGENCIA</label>
+                                        <input type="text" class="form-control" id="edittxtcontacto" placeholder="CONTACTO DE EMERGENCIA">
+                                    </div>
+                                </div>
+
+                                <!-- Cuarta fila -->
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="edittxtrol">ROL</label>
+                                        <select class="form-control" id="edittxtrol">
+                                            <option value="0">-- Selecciona un Rol --</option>
+                                            <option value="Médico general">Médico general</option>
+                                            <option value="Médico quirúrgico">Médico quirúrgico</option>
+                                            <option value="Médico enfocado en órganos o sistemas">Médico enfocado en órganos o sistemas</option>
+                                            <option value="Médico diagnóstico">Médico diagnóstico</option>
+                                            <option value="Médico relacionado con salud mental y comportamiento">Médico relacionado con salud mental y comportamiento</option>
+                                            <option value="Medicina preventiva y social">Medicina preventiva y social</option>
+                                            <option value="Médico especialista">Médico especialista</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="edittxtespecialidad">ESPECIALIDAD</label>
+                                        <select class="form-control" id="edittxtespecialidad">
+                                            <option value="0">-- Selecciona una Especialidad --</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Quinto fila -->
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="edittxtpassword">Contraseña</label>
+                                        <input type="password" class="form-control" id="edittxtpassword" placeholder="Contraseña">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="edittxtConfirmPassword">Confirmar Contraseña</label>
+                                        <input type="password" class="form-control" id="edittxtConfirmPassword" placeholder="Confirmar Contraseña">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="form-group col-md-6">
+                                        <label for="edittxthorario">HORARIO:</label>
+                                        <select class="form-control" id="edittxthorario">
+                                            <option value="0">-- Selecciona un Horario --</option>
+                                            <option value="00:00 Hasta las 11:59">00:00 Hasta las 11:59</option>
+                                            <option value="06:00 Hasta las 17:59">06:00 Hasta las 17:59</option>
+                                            <option value="12:00 Hasta las 23:59">12:00 Hasta las 23:59</option>
+                                            <option value="18:00 Hasta las 05:59">18:00 Hasta las 05:59</option>
+                                        </select>
+                                    </div>
 
 
-                         
- 
-                         
+                                    <div class="form-group col-md-6">
+                                        <label for="editcbopais">PAIS</label>
+                                        <select class="form-control" id="editcbopais">
+                                            <option value=0>ESCOJA UN PAIS</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+
+
+
+
 
 
                         </form>

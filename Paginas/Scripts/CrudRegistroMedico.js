@@ -5,6 +5,51 @@
 
     LlenarTabla();
 });
+
+async function verificarAutenticacion() {
+    try {
+        const id = getCookie("Usuario");
+        const token = getCookie("token");
+        
+        if (!id || !token) {
+            alert('No hay usuario autenticado.');
+            window.location.href = 'home.html';
+            return;
+        }
+            
+        const url = "https://localhost:44389/api/RegistroMedicos/ConsultarXIDp?ID=" + id;
+        const response = await fetch(url, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error('Error en la respuesta del servidor');
+        }
+        
+        const Usuario = await response.json();
+      
+        if (Usuario.Tipo !== "Administrador") {
+            alert('DEBES SER ADMINISTRADOR PARA ACCEDER A ESTA PAGINA.');
+            window.location.href = 'home.html';
+            return;
+        }
+
+        document.body.style.display = 'block';
+    } catch (error) {
+        console.error('Error al verificar autenticación:', error);
+        alert('Error al verificar permisos de usuario.');
+        window.location.href = 'home.html';
+    }
+}
+
+// Ejecutar la verificación cuando se carga la página
+document.addEventListener
+
 function LlenarTabla() {
 
     const tabla = $('#tblMedicos').DataTable();
@@ -47,7 +92,18 @@ async function Ejecutar(Metodo, Funcion) {
 
 
     let id_persona = $("#txtid_persona").val();
-    let usuario1 = $("#txttipo").val();
+    let Tipo = $("#txttipo").val();
+    let Mensaje = "";
+    let Pagina = "";
+    if (Tipo == "Administrador") {
+        Mensaje = "BIENVENIDO ADMINISTRADOR"
+        Pagina = "RegistroMedicos.html"
+
+    } else if (Tipo == "Medico") {
+
+        Mensaje = "BIENVENIDO MEDICO"
+        Pagina = "Home.html"
+    }
     let rol = $("#txtrol").val();
     let especialidad = $("#txtespecialidad").val();
     let horario = $("#txthorario").val();
@@ -60,7 +116,7 @@ async function Ejecutar(Metodo, Funcion) {
     } else if (password == confirmpassword) {
         const personas = new PERSONA($("#txtid_persona").val(), $("#txtnombre").val(), $("#txtapellido").val(), $("#txtfecha_nacimiento ").val(),
             $("#txtdireccion").val(), $("#txttelefono").val(), $("#txtemail").val(), $("#txtgenero").val(), $("#cbopais").val(), $("#txtpassword").val());
-        let URL = "https://localhost:44389/api/RegistroMedicos/" + Funcion + "?id_persona=" + id_persona + "&usuario1=" + usuario1 + "&rol=" + rol + "&especialidad=" + especialidad
+        let URL = "https://localhost:44389/api/RegistroMedicos/" + Funcion + "?id_persona=" + id_persona + "&Tipo=" + Tipo + "&rol=" + rol + "&Mensaje=" + Mensaje + "&Pagina=" + Pagina + "&especialidad=" + especialidad
             + "&horario=" + horario + "&contacto=" + contacto + "&password=" + password;
         EjecutarServicioAuth(Metodo, URL, personas);
         LlenarTabla();
@@ -71,7 +127,16 @@ async function EjecutarModal(Metodo, Funcion) {
 
 
     let id_persona = $("#edittxtid_persona").val();
-    let usuario1 = $("#edittxttipo").val();
+    let Tipo = $("#edittxttipo").val();
+    if (Tipo == "Administrador") {
+        Mensaje = "BIENVENIDO ADMINISTRADOR"
+        Pagina = "RegistroMedicos.html"
+
+    } else if (Tipo == "Medico") {
+
+        Mensaje = "BIENVENIDO MEDICO"
+        Pagina = "Home.html"
+    }
     let rol = $("#edittxtrol").val();
     let especialidad = $("#edittxtespecialidad").val();
     let horario = $("#edittxthorario").val();
@@ -84,7 +149,7 @@ async function EjecutarModal(Metodo, Funcion) {
     } else if (password == confirmpassword) {
         const personas = new PERSONA($("#edittxtid_persona").val(), $("#edittxtnombre").val(), $("#edittxtapellido").val(), $("#edittxtfecha_nacimiento ").val(),
             $("#edittxtdireccion").val(), $("#edittxttelefono").val(), $("#edittxtemail").val(), $("#edittxtgenero").val(), $("#editcbopais").val(), $("#edittxtpassword").val());
-        let URL = "https://localhost:44389/api/RegistroMedicos/" + Funcion + "?id_persona=" + id_persona + "&usuario1=" + usuario1 + "&rol=" + rol + "&especialidad=" + especialidad
+        let URL = "https://localhost:44389/api/RegistroMedicos/" + Funcion + "?id_persona=" + id_persona + "&Tipo=" + Tipo + "&rol=" + rol + "&Mensaje=" + Mensaje + "&Pagina=" + Pagina + "&especialidad=" + especialidad
             + "&horario=" + horario + "&contacto=" + contacto + "&password=" + password;
         EjecutarServicioAuth(Metodo, URL, personas);
         LlenarTabla();
@@ -186,6 +251,8 @@ document.getElementById('edittxtrol').addEventListener('change', function () {
     }
 });
 
+
+
 class PERSONA {
     constructor(id_persona, nombre, apellido, fecha_nacimiento, direccion, telefono, email, genero, id_pais, password) {
         this.id_persona = id_persona;
@@ -201,6 +268,9 @@ class PERSONA {
 
 
     }
+
+
+
 
 
 }
