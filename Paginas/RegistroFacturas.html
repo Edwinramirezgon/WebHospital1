@@ -43,7 +43,7 @@
                 <div class="col-md-12">
                     <div class="card card-navy">
                         <div class="card-header">
-                            <h3 class="card-title" id="idTitulo">ASIGNACIÓN DE FORMULAS MÉDICAS</h3>
+                            <h3 class="card-title" id="idTitulo">REGISTRO DE FACTURAS</h3>
                         </div>
                         <form id="frmIncapacidades">
                             <div class="card-body">
@@ -107,7 +107,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalEditarLabel">ASIGNAR MEDICAMENTO</h5>
+                        <h5 class="modal-title" id="modalEditarLabel">GENERAR FACTURA</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -117,32 +117,25 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="txtid_formula">FORMULA</label>
-                                        <input type="text" class="form-control" id="txtid_formula" placeholder="NÚMERO DE FORMULA" disabled>
+                                        <label for="txtid_factura">FACTURA</label>
+                                        <input type="text" class="form-control" id="txtid_factura" placeholder="NÚMERO DE FACTURA" disabled>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="txtFechaFormula">FECHA</label>
-                                        <input type="text" class="form-control" id="txtFechaFormula" placeholder="FECHA FORMULA" disabled>
+                                        <label for="txtFechaFactura">FECHA FACTURA</label>
+                                        <input type="text" class="form-control" id="txtFechaFactura" placeholder="FECHA FACTURA" disabled>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="edittxtid">ID DEL EVENTO</label>
-                                        <input type="text" class="form-control" id="edittxtid" placeholder="ID DEL EVENTO" disabled>
+
+                                        <input type="text" class="form-control" id="edittxtid" placeholder="ID DEL EVENTO" hidden>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="edittxtDocumento">DOCUMENTO DEL PACIENTE</label>
                                         <input type="text" class="form-control" id="edittxtDocumento" placeholder="DOCUMENTO PACIENTE" disabled>
                                     </div>
-
-                                                                  
-                                        <input type="text" class="form-control" id="edittxtDocumentoM" placeholder="DOCUMENTO MEDICO" hidden>                             
-
-                              
-                                 
-                                        <input type="text" class="form-control" id="edittxtDocumento2" placeholder="DOCUMENTO MEDICO" hidden>
-                                   
+                                    <input type="text" class="form-control" id="edittxtDocumento2" placeholder="DOCUMENTO MEDICO" hidden>
 
                                     <div class="form-group">
                                         <label for="txtNombrePaciente">NOMBRE DEL PACIENTE</label>
@@ -150,22 +143,6 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="cboMedicamento">MEDICAMENTOS</label>
-                                        <select id="cboMedicamento" class="form-control select2" style="width: 100%" ;>
-                                            <option selected="selected" value="0">SELECCIONE UN MEDICAMENTO</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="txtCantidad">CANTIDAD</label>
-                                        <input type="number" class="form-control" id="txtCantidad" placeholder="CANTIDAD" min="1">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="txtDosis">DOSIS</label>
-                                        <input type="text" class="form-control" id="txtDosis" placeholder="DOSIS">
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="edittxtnombremedico">NOMBRE DEL MEDICO ENCARGADO</label>
@@ -173,22 +150,44 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="edittxtfecha_evento">FECHA_DE_EVENTO</label>
-                                        <input type="date" class="form-control" id="edittxtfecha_evento" placeholder="FECHA_DE_EVENTO" disabled>
+                                        <label for="txtTotal">TOTAL A PAGAR</label>
+                                        <input type="text" class="form-control" id="txtTotal" placeholder="TOTAL" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cboMetodoPago">MÉTODO DE PAGO</label>
+                                        <select id="cboMetodoPago" class="form-control">
+                                            <option value="efectivo">EFECTIVO</option>
+                                            <option value="tarjetaDebito">TARJETA DÉBITO</option>
+                                            <option value="tarjetaCredito">TARJETA CRÉDITO</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edittxtestado_pago">ESTADO DE PAGO</label>
+                                        <input type="text" class="form-control" id="edittxtestado_pago" placeholder="POR PAGAR" disabled>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="txtindicaciones">INDICACIONES</label>
-                                        <textarea class="form-control" id="txtindicaciones" placeholder="INDICACIONES" rows="5"></textarea>
+                                        <label for="cboTipoCita">Tipo de Cita</label>
+                                        <select id="cboTipoCita" class="form-control">
+                                            <option value="general">CONSULTA GENERAL</option>
+                                            <option value="especialista">CONSULTA ESPECIALISTA</option>
+                                            <option value="urgencia">URGENCIAS</option>
+                                            <option value="hospitalizacion">HOSPITALIZACIÓN</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="edittxtdescripcion">DESCRIPCION DEL EVENTO</label>
-                                        <textarea class="form-control" id="edittxtdescripcion" rows="5" disabled></textarea>
+                                        <label for="cboEps">EPS</label>
+                                        <select id="cboEps" class="form-control">
+                                            <option value="ninguna">SIN EPS</option>
+                                            <option value="saludtotal">SALUD TOTAL</option>
+                                            <option value="sura">SURA</option>
+                                            <option value="nuevaeps">NUEVA EPS</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -197,23 +196,22 @@
                     <div class="modal-footer">
                         <div class="row w-100">
                             <div class="col-md-6">
-                                <button type="button" id="btnGrabarMedicamento" class="btn btn-block btn-lg btn-success" onclick="GrabarMedicamento()">AGREGAR MEDICAMENTO</button>
+                                <button type="button" id="btnGrabarMedicamento" class="btn btn-block btn-lg btn-success" onclick="cotizar()">COTIZAR</button>
                             </div>
                             <div class="col-md-6">
-                                <button type="button" id="btnGrabarFormula" class="btn btn-block btn-lg btn-success" onclick="Ejecutar('POST','Insertar')">GRABAR FORMULA</button>
+                                <button type="button" id="btnGrabarFormula" class="btn btn-block btn-lg btn-success" onclick="Ejecutar('POST','Insertar')">GENERAR FACTURA</button>
                             </div>
                         </div>
                         <div class="row w-100">
                             <div class="col-md-12">
-                                <table id="tblmedicamentos" class="table table-bordered table-striped" style="width:100%;">
+                                <table id="tblFacturas" class="table table-bordered table-striped" style="width:100%;">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>NOMBRE</th>
-                                            <th>DESCRIPCION</th>
-                                            <th>DOSIS</th>
-                                            <th>CANTIDAD</th>
-
+                                            <th>PACIENTE</th>
+                                            <th>MÉTODO DE PAGO</th>
+                                            <th>FECHA DE FACTURA</th>
+                                            <th>TOTAL</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -224,9 +222,9 @@
                         <div id="dvMensajemodal" class=""></div>
                     </div>
                 </div>
-                </div>
             </div>
-        
+        </div>
+
     </section>
 
 
@@ -235,7 +233,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../Scripts/jquery.dataTables.min.js"></script>
     <script src="Scripts/Comunes/CRUD.js"></script>
-    <script src="Scripts/menu.js"></script>
     <script src="Scripts/RegistroFacturas.js"></script>
+    <script src="Scripts/menu.js"></script>
+
 </body>
 </html>

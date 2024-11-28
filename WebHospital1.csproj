@@ -180,6 +180,7 @@
     <Content Include="Paginas\Login.html" />
     <Content Include="Paginas\Menu.html" />
     <Content Include="Paginas\Pagos.html" />
+    <Content Include="Paginas\RegistroFacturas.html" />
     <Content Include="Paginas\RegistroHabitaciones.html" />
     <Content Include="Paginas\RegistroMedicos.html" />
     <Content Include="Paginas\RegistroPacientes.html" />
@@ -207,6 +208,7 @@
     <Content Include="Paginas\Scripts\Login.js" />
     <Content Include="Paginas\Scripts\menu.js" />
     <Content Include="Paginas\Scripts\CrudRegistroPacientes.js" />
+    <Content Include="Paginas\Scripts\RegistroFacturas.js" />
     <Content Include="Paginas\Urgencias.html" />
     <Content Include="Scripts\adminlte.js" />
     <Content Include="Scripts\adminlte.min.js" />

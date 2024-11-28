@@ -6,10 +6,13 @@ function GrabarMedicamento() {
   
         const medicamentoId = $('#cboMedicamento').val();
         const nombreMedicamento = $('#cboMedicamento option:selected').text();
-        const cantidad = $('#txtCantidad').val();
+        const cantidad = parseInt($('#txtCantidad').val(), 10);
+        if (isNaN(cantidad) || cantidad < 1) {
+            alert('La cantidad debe ser un número positivo mayor a 0.');
+            return;
+        }
         const dosis = $('#txtDosis').val();
 
-     
         if (medicamentoId === '0' || !cantidad || !dosis) {
             alert('Por favor, complete todos los campos requeridos.');
             return;
