@@ -124,6 +124,7 @@
     <Content Include="Imagenes\hospital1.jpg" />
     <Content Include="Imagenes\hospital2.jpg" />
     <Content Include="Imagenes\hospital3.jpg" />
+    <Content Include="Paginas\AsignacionFormulas.html" />
     <Content Include="Paginas\CrudAltas.html" />
     <Content Include="Paginas\CrudCitas.html" />
     <Content Include="Paginas\CrudDetallesFormulas.html" />
@@ -175,6 +176,7 @@
     <Content Include="Paginas\Estilos\webfonts\fa-regular-400.svg" />
     <Content Include="Paginas\Estilos\webfonts\fa-solid-900.svg" />
     <Content Include="Paginas\HOME.html" />
+    <Content Include="Paginas\Hospitalizaciones.html" />
     <Content Include="Paginas\Login.html" />
     <Content Include="Paginas\Menu.html" />
     <Content Include="Paginas\Pagos.html" />
@@ -183,6 +185,7 @@
     <Content Include="Paginas\RegistroPacientes.html" />
     <Content Include="Paginas\Scripts\Comunes\CRUD.js" />
     <Content Include="Paginas\Scripts\CrudAlta.js" />
+    <Content Include="Paginas\Scripts\CrudAsignacionFormulas.js" />
     <Content Include="Paginas\Scripts\CrudCitas.js" />
     <Content Include="Paginas\Scripts\CrudDetallesFormulas.js" />
     <Content Include="Paginas\Scripts\CrudEventoMedico.js" />
@@ -190,6 +193,7 @@
     <Content Include="Paginas\Scripts\CrudFormula.js" />
     <Content Include="Paginas\Scripts\CrudHabitacion.js" />
     <Content Include="Paginas\Scripts\CrudHospitalizacion.js" />
+    <Content Include="Paginas\Scripts\CrudHospitalizaciones.js" />
     <Content Include="Paginas\Scripts\CrudMedicamento.js" />
     <Content Include="Paginas\Scripts\CrudMedico.js" />
     <Content Include="Paginas\Scripts\CrudPaciente.js" />

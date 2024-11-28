@@ -187,4 +187,7 @@ function getCookie(cname) {
     }
     return "";
 }
-
+function FechaHoy() {
+    let now = new Date();
+    return now.toISOString().split('T')[0];
+}
