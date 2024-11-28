@@ -46,6 +46,29 @@ async function ConsultarDatosMedico() {
 async function ConsultarPaciente() {
     let Documento = $("#txtDocumento").val();
     const Paciente = await ConsultarServicioAuth("https://localhost:44389/api/Personas/ConsultarXID?ID=" + Documento);
-    $("#txtNombrePaciente").val(Paciente.nombre + " " + Paciente.apellido);
-    $("#txtIDPaciente").val(Paciente.id_paciente);    
+   
+}
+
+function LlenarTabla() {
+
+
+    let Documento = $("#txtDocumento").val();
+    const tabla = $('#tbleventos').DataTable();
+    tabla.clear().destroy();
+    LlenarTablaXServiciosAuth("https://localhost:44389/api/EventosMedicos/LlenarTabla", "#tbleventos");
+    const tabla2 = $('#tbleventos').DataTable();
+    tabla2.clear().destroy();
+    LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroMedicos/LlenarTabla", "#tbleventos");
+}
+
+function abrirModalAsignar(ID, ID_PACIENTE, ID_MEDICO, FECHA_DE_URGENCIA, DESCRIPCION_DE_URGENCIA, ESTADO_DE_URGENCIA) {
+    $("#edittxtid").val(ID);
+    $("#editcbopacientes").val(ID_PACIENTE);
+    $("#editcbomedicos").val(ID_MEDICO);
+    $("#edittxtfecha_evento").val(FECHA_DE_URGENCIA.split('T')[0]);
+    $("#edittxtdescripcion").val(DESCRIPCION_DE_URGENCIA);
+    $("#edittxtestado").val(ESTADO_DE_URGENCIA);
+    $("#dvMensaje").html("");
+
+    $('#modalEditar').modal('show');
 }

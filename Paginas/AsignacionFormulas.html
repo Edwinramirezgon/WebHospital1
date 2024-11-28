@@ -43,7 +43,7 @@
                 <div class="col-md-12">
                     <div class="card card-navy">
                         <div class="card-header">
-                            <h3 class="card-title" id="idTitulo">AIGNACIÓN DE FORMULAS MÉDICAS</h3>
+                            <h3 class="card-title" id="idTitulo">ASIGNACIÓN DE FORMULAS MÉDICAS</h3>
                         </div>
                         <form id="frmIncapacidades">
                             <div class="card-body">
@@ -53,22 +53,12 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-1">
-                                                <div class="form-group">
-                                                    <label for="txtid_formula">FORMULA</label>
-                                                    <input type="text" class="form-control" id="txtid_formula" placeholder="NÚMERO DE FORMULA" disabled>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label for="txtFechaFormula">FECHA</label>
-                                                    <input type="text" class="form-control" id="txtFechaFormula" placeholder="FECHA FORMULA" disabled>
-                                                </div>
-                                            </div>
+
+
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="txtDocumento">DOCUMENTO DEL PACIENTE</label>
-                                                    <input type="text" class="form-control" id="txtDocumento" placeholder="DOCUMUENTO PACIENTE">
+                                                    <input type="text" class="form-control" id="txtDocumento" placeholder="DOCUMENTO PACIENTE">
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="text" class="form-control" id="txtIDMedico" hidden>
@@ -76,49 +66,8 @@
                                             </div>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <img id="btnBuscar" src="../Imagenes/Buscar.jpg" style="cursor:pointer" ; onclick="ConsultarPaciente()" />
+                                                    <img id="btnBuscar" src="../Imagenes/Buscar.jpg" style="cursor:pointer" ; onclick="LlenarTabla()" />
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="txtNombrePaciente">NOMBRE DEL PACIENTE</label>
-                                                    <input type="text" class="form-control" id="txtNombrePaciente" placeholder="NOMBRE DEL PACIENTE" disabled>
-                                                </div><div class="form-group">
-                                                    <input type="text" class="form-control" id="txtIDPaciente" hidden>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="cboMedicamento">MEDICAMENTOS</label>
-                                                    <select id="cboMedicamento" class="form-control select2" style="width: 100%" ;>
-                                                        <option selected="selected" value="0">SELECCIONE UN MEDICAMENTO</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="txtCantidad">CANTIDAD</label>
-                                                    <input type="number" class="form-control" id="txtCantidad" placeholder="CANTIDAD">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="txtDosis">INDICACIONES</label>
-                                                    <textarea class="form-control" id="txtDosis" placeholder="INDICACIONES" rows="5"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <br />
-                                                <button type="button" id="btnInsertar" class="btn-block btn-lg btn-success" onclick="GrabarMedicamento()">GRABAR MEDICAMENTO</button>
-                                            </div><div class="col-md-6">
-                                                <br />
-                                                <button type="button" id="btnInsertar" class="btn-block btn-lg btn-success" onclick="GrabarFormula()">GRABAR FORMULA</button>
                                             </div>
 
 
@@ -127,26 +76,18 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <table id="tblMedicos" class="table table-bordered table-striped" style="width:100%;">
+                                        <table id="tbleventos" class="table table-bordered table-striped" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>PAIS</th>
-                                                    <th>NOMBRES</th>
-                                                    <th>APELLIDOS</th>
-                                                    <th>FECHA DE NACIMIENTO</th>
-                                                    <th>DIRECCION</th>
-                                                    <th>TELEFONO</th>
-                                                    <th>EMAIL</th>
-                                                    <th>GENERO</th>
-                                                    <th>TIPO DE USUARIO</th>
-                                                    <th>ROL</th>
-                                                    <th>ESPECIALIDAD</th>
-                                                    <th>HORARIO</th>
-                                                    <th>TELEFONO DE CONTACTO</th>
+                                                    <th>ID_URGENCIA</th>
+                                                    <th>PACIENTE</th>
+                                                    <th>ID_PACIENTE</th>
+                                                    <th>MEDICO</th>
+                                                    <th>FECHA_DE_URGENCIA</th>
+                                                    <th>DESCRIPCION_DE_URGENCIA</th>
+                                                    <th>ESTADO_DE_URGENCIA</th>
                                                     <th>EDITAR</th>
                                                     <th>ELIMINAR</th>
-
 
                                                 </tr>
                                             </thead>
@@ -165,151 +106,76 @@
             </div>
         </div>
         <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalEditarLabel">Editar Médico</h5>
+                        <h5 class="modal-title" id="modalEditarLabel">Editar Urgencia</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form id="formEditar">
-                            <!-- Primera fila -->
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtid_persona">ID</label>
-                                    <input type="text" class="form-control" id="edittxtid_persona" placeholder="ID" disabled>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtnombre">NOMBRES</label>
-                                    <input type="text" class="form-control" id="edittxtnombre" placeholder="NOMBRES">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtapellido">APELLIDOS</label>
-                                    <input type="text" class="form-control" id="edittxtapellido" placeholder="APELLIDOS">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="edittxttipo">TIPO DE USUARIO</label>
-                                    <input type="text" class="form-control" id="edittxttipo" placeholder="TIPO DE USUARIO">
-                                </div>
+
+
+
+                            <div class="form-group">
+                                <label for="edittxtid">ID DE LA URGENCIA</label>
+                                <input type="text" class="form-control" id="edittxtid" placeholder="ID DE LA URGENCIA" disabled>
                             </div>
 
-                            <!-- Segunda fila -->
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtfecha_nacimiento">FECHA DE NACIMIENTO</label>
-                                    <input type="date" class="form-control" id="edittxtfecha_nacimiento">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtdireccion">DIRECCIÓN</label>
-                                    <input type="text" class="form-control" id="edittxtdireccion" placeholder="DIRECCIÓN">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="edittxttelefono">TELÉFONO</label>
-                                    <input type="text" class="form-control" id="edittxttelefono" placeholder="TELÉFONO">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtemail">EMAIL</label>
-                                    <input type="text" class="form-control" id="edittxtemail" placeholder="EMAIL">
-                                </div>
+                            <div class="form-group">
+                                <label for="editcbopacientes">PACIENTES</label>
+                                <select class="form-control" id="editcbopacientes">
+                                    <option value=0>ESCOJA UN PACIENTE</option>
+                                </select>
                             </div>
 
-                            <!-- Tercera fila -->
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtgenero">GÉNERO</label>
-                                    <select class="form-control" id="edittxtgenero">
-                                        <option value="0">-- Selecciona un Género --</option>
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtcontacto">CONTACTO DE EMERGENCIA</label>
-                                    <input type="text" class="form-control" id="edittxtcontacto" placeholder="CONTACTO DE EMERGENCIA">
-                                </div>
-                            </div>
-
-                            <!-- Cuarta fila -->
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtrol">ROL</label>
-                                    <select class="form-control" id="edittxtrol">
-                                        <option value="0">-- Selecciona un Rol --</option>
-                                        <option value="Médico general">Médico general</option>
-                                        <option value="Médico quirúrgico">Médico quirúrgico</option>
-                                        <option value="Médico enfocado en órganos o sistemas">Médico enfocado en órganos o sistemas</option>
-                                        <option value="Médico diagnóstico">Médico diagnóstico</option>
-                                        <option value="Médico relacionado con salud mental y comportamiento">Médico relacionado con salud mental y comportamiento</option>
-                                        <option value="Medicina preventiva y social">Medicina preventiva y social</option>
-                                        <option value="Médico especialista">Médico especialista</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtespecialidad">ESPECIALIDAD</label>
-                                    <select class="form-control" id="edittxtespecialidad">
-                                        <option value="0">-- Selecciona una Especialidad --</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Quinto fila -->
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtpassword">Contraseña</label>
-                                    <input type="password" class="form-control" id="edittxtpassword" placeholder="Contraseña">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="edittxtConfirmPassword">Confirmar Contraseña</label>
-                                    <input type="password" class="form-control" id="edittxtConfirmPassword" placeholder="Confirmar Contraseña">
-                                </div>
-                            </div>
-
-                            <div class="row">
-
-                                <div class="form-group col-md-6">
-                                    <label for="edittxthorario">HORARIO:</label>
-                                    <select class="form-control" id="edittxthorario">
-                                        <option value="0">-- Selecciona un Horario --</option>
-                                        <option value="00:00 Hasta las 11:59">00:00 Hasta las 11:59</option>
-                                        <option value="06:00 Hasta las 17:59">06:00 Hasta las 17:59</option>
-                                        <option value="12:00 Hasta las 23:59">12:00 Hasta las 23:59</option>
-                                        <option value="18:00 Hasta las 05:59">18:00 Hasta las 05:59</option>
-                                    </select>
-                                </div>
-
-
-                                <div class="form-group col-md-6">
-                                    <label for="editcbopais">PAIS</label>
-                                    <select class="form-control" id="editcbopais">
-                                        <option value=0>ESCOJA UN PAIS</option>
-                                    </select>
-                                </div>
-
+                            <div class="form-group">
+                                <label for="edittxtfecha_evento">FECHA_DE_URGENCIA</label>
+                                <input type="date" class="form-control" id="edittxtfecha_evento" placeholder="FECHA_DE_URGENCIA">
                             </div>
 
 
 
 
 
+                            <div class="form-group">
+                                <label for="edittxtestado">ESTADO DE LA URGENCIA</label>
+                                <select class="form-control" id="edittxtestado">
+                                    <option value="ACTIVA">ACTIVA</option>
+                                    <option value="TERMINADA">TERMINADA</option>
+                                    <option value="TRASLADADA">TRASLADADA</option>
+                                </select>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <label for="editcbomedicos">MEDICOS</label>
+                                <select class="form-control" id="editcbomedicos">
+                                    <option value=0>ESCOJA UN MEDICO</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="edittxtdescripcion">DESCRIPCION DE LA URGENCIA</label>
+                                <textarea class="form-control" id="edittxtdescripcion" rows="5"></textarea>
+                            </div>
 
 
                         </form>
                     </div>
                     <div class="modal-footer">
                         <div class="col-md-6">
+                            <br />
                             <button type="button" id="btnActualizar" class="btn-block btn-lg btn-primary" data-dismiss="modal" onclick="EjecutarModal('PUT','Actualizar')">ACTUALIZAR</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </section>
 
 
