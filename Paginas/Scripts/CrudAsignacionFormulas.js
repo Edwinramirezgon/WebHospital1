@@ -59,21 +59,17 @@ function GrabarMedicamento() {
 async function GrabarMedicamentosEnCiclo() {
     const table = $('#tblmedicamentos').DataTable();
 
-    // Recorre cada fila de la tabla
-    table.rows().every(function () {
-        const data = this.data();
+    
+    for (let i = 0; i < table.rows().count(); i++) {
+        const data = table.row(i).data();
 
-        // Extrae los datos de la fila
-        const medicamentoId = data[0];  // Asumiendo que medicamentoId está en la primera columna
-        const nombreMedicamento = data[1];  // El nombre del medicamento en la segunda columna
-        const descripcionMedicamento = data[2];  // Descripción en la tercera columna
-        const dosis = data[3];  // Dosis en la cuarta columna
-        const cantidad = data[4];  // Cantidad en la quinta columna
+        const medicamentoId = data[0];     
+        const dosis = data[3];
+        const cantidad = data[4];
 
-        // Llama a EjecutarM para cada fila
-        EjecutarM(medicamentoId, cantidad, dosis);
-    });
-
+       
+        await EjecutarM(medicamentoId, cantidad, dosis);
+    }
 }
 
 
@@ -83,14 +79,14 @@ async function Ejecutar(Metodo, Funcion) {
     const formulas = new Formula($("#txtid_formula").val(), $("#edittxtDocumento2").val(), $("#edittxtDocumentoM").val(), $("#edittxtid ").val(),
         $("#txtFechaFormula").val(), $("#txtindicaciones").val());
     let URL = "https://localhost:44389/api/RegistroFormulas/" + Funcion;
-    EjecutarServicioAuth(Metodo, URL, formulas);
-    GrabarMedicamentosEnCiclo()
+    await EjecutarServicioAuth(Metodo, URL, formulas);
+    await GrabarMedicamentosEnCiclo()
 
 }
 
 async function EjecutarM(medicamentoId, cantidad, dosis) {
 
-    const detallesf = new DetallesFormulas("", $("#txtid_formula").val(), medicamentoId, cantidad ,
+    const detallesf = new DetallesFormulas(0, $("#txtid_formula").val(), medicamentoId, cantidad ,
         dosis );
     let URL = "https://localhost:44389/api/DetallesFormulas/Insertar";
     EjecutarServicioAuth("POST", URL, detallesf);
