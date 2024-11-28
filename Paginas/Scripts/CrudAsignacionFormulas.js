@@ -2,8 +2,6 @@
     $("#txtid_formula").val(0);
     $("#txtFechaFormula").val(FechaHoy());
     LlenarComboXServiciosAuth("https://localhost:44389/api/RegistroFormulas/LlenarCombo", "#cboMedicamento");
-
-    ConsultarDatosMedico();
 });
 
 async function GrabarMedicamento() {
@@ -35,13 +33,7 @@ class DetalleFormula {
     }
 }
 
-async function ConsultarDatosMedico() {
-    let idMedico = getCookie("Usuario");
-    const Medico = await ConsultarServicioAuth("https://localhost:44389/api/RegistroMedicos/ConsultarXIDp?ID=" + idMedico);
-    $("#txtIDMedico").val(Medico.Medicos[0].id_medico);
-    let nombreMedico = getCookie("Perfil");
-    $("#idTitulo").html("FORMULA MÉDICA - MÉDICO TRATANTE: " + nombreMedico);
-}
+
 
 async function ConsultarPaciente() {
     let Documento = $("#txtDocumento").val();
@@ -55,19 +47,20 @@ function LlenarTabla() {
     let Documento = $("#txtDocumento").val();
     const tabla = $('#tbleventos').DataTable();
     tabla.clear().destroy();
-    LlenarTablaXServiciosAuth("https://localhost:44389/api/EventosMedicos/LlenarTabla", "#tbleventos");
+    LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroFormulas/LlenarTabla?id=" + Documento, "#tbleventos");
     const tabla2 = $('#tbleventos').DataTable();
     tabla2.clear().destroy();
-    LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroMedicos/LlenarTabla", "#tbleventos");
+    LlenarTablaXServiciosAuth("https://localhost:44389/api/RegistroFormulas/LlenarTabla?id=" + Documento, "#tbleventos");
+
 }
 
-function abrirModalAsignar(ID, ID_PACIENTE, ID_MEDICO, FECHA_DE_URGENCIA, DESCRIPCION_DE_URGENCIA, ESTADO_DE_URGENCIA) {
+function abrirModalAsignar(ID, ID_PACIENTE, NOMBRE_PACIENTE, APELLIDO_PACIENTE, NOMBRE_MEDICO, APELLIDO_MEDICO, FECHA_DE_EVENTO, DESCRIPCION_DE_EVENTO) {
     $("#edittxtid").val(ID);
-    $("#editcbopacientes").val(ID_PACIENTE);
-    $("#editcbomedicos").val(ID_MEDICO);
-    $("#edittxtfecha_evento").val(FECHA_DE_URGENCIA.split('T')[0]);
-    $("#edittxtdescripcion").val(DESCRIPCION_DE_URGENCIA);
-    $("#edittxtestado").val(ESTADO_DE_URGENCIA);
+    $("#edittxtDocumento").val(ID_PACIENTE); 
+    $("#txtNombrePaciente").val(NOMBRE_PACIENTE + " " + APELLIDO_PACIENTE);   
+    $("#edittxtnombremedico").val(NOMBRE_MEDICO + " " + APELLIDO_MEDICO); 
+    $("#edittxtfecha_evento").val(FECHA_DE_EVENTO.split('T')[0]);
+    $("#edittxtdescripcion").val(DESCRIPCION_DE_EVENTO);
     $("#dvMensaje").html("");
 
     $('#modalEditar').modal('show');
